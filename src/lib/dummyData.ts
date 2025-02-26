@@ -4,7 +4,8 @@ interface DisList {
     lastModified: string,
     location: string,
     category: string,
-    performance:string,
+  performance: string,
+  id:string
 }
 const distributorList: DisList[] = [
   {
@@ -13,6 +14,7 @@ const distributorList: DisList[] = [
     location: "Lagos",
     category: "Main distributor",
     performance: "5%",
+    id:'1'
   },
   {
     name: "John Smith",
@@ -20,6 +22,7 @@ const distributorList: DisList[] = [
     location: "New York",
     category: "Main distributor",
     performance: "8%",
+    id:'2'
   },
   {
     name: "Mary Johnson",
@@ -27,6 +30,7 @@ const distributorList: DisList[] = [
     location: "Los Angeles",
     category: "Main distributor",
     performance: "12%",
+    id:'3'
   },
   {
     name: "James Brown",
@@ -34,6 +38,7 @@ const distributorList: DisList[] = [
     location: "Chicago",
     category: "Main distributor",
     performance: "7%",
+    id:'4'
   },
   {
     name: "Emily Davis",
@@ -41,6 +46,7 @@ const distributorList: DisList[] = [
     location: "Houston",
     category: "Main distributor",
     performance: "10%",
+    id:'5'
   },
   {
     name: "Michael Wilson",
@@ -48,6 +54,7 @@ const distributorList: DisList[] = [
     location: "Miami",
     category: "Main distributor",
     performance: "6%",
+    id:'6'
   },
   {
     name: "Linda Miller",
@@ -55,6 +62,7 @@ const distributorList: DisList[] = [
     location: "Dallas",
     category: "Main distributor",
     performance: "15%",
+    id:'7'
   },
   {
     name: "Robert Taylor",
@@ -62,6 +70,7 @@ const distributorList: DisList[] = [
     location: "San Francisco",
     category: "Main distributor",
     performance: "9%",
+    id:'8'
   },
   {
     name: "Patricia Anderson",
@@ -69,6 +78,7 @@ const distributorList: DisList[] = [
     location: "Seattle",
     category: "Main distributor",
     performance: "14%",
+    id:'9'
   },
   {
     name: "William Martinez",
@@ -76,6 +86,7 @@ const distributorList: DisList[] = [
     location: "Denver",
     category: "Main distributor",
     performance: "11%",
+    id:'10'
   },
   {
     name: "Jessica Thomas",
@@ -83,6 +94,7 @@ const distributorList: DisList[] = [
     location: "Boston",
     category: "Main distributor",
     performance: "4%",
+    id:'11'
   },
 ];
 

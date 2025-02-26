@@ -1,4 +1,6 @@
+"use client"
 import React from 'react';
+import { useRouter } from 'next/navigation';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { distributorList } from '@/lib/dummyData';
 import { IoIosArrowRoundDown } from "react-icons/io";
@@ -6,7 +8,8 @@ import { IoMdArrowDropup } from "react-icons/io";
 import { Pagination,PaginationContent, PaginationItem, PaginationNext, PaginationPrevious, PaginationLink, PaginationEllipsis } from '@/components/ui/pagination';
 
 
-const DistributorTable = ({userType, distributors}:{userType:string, distributors:string}) => {
+const DistributorTable = ({ userType, distributors }: { userType: string, distributors: string }) => {
+  const router = useRouter();
   return (
     <section>
       <div className=' border border-slate-100 shadow p-2'>
@@ -34,7 +37,7 @@ const DistributorTable = ({userType, distributors}:{userType:string, distributor
               {distributorList.map((list, key) => {
                 return (
                   <TableRow key={key}>
-                    <TableCell className='text-center cursor-pointer'>
+                    <TableCell className='text-center cursor-pointer' onClick={()=>router.push(`/super-agent/${list.id}`)}>
                       {list.name}
                     </TableCell>
                     <TableCell className='text-center'>{list.lastModified}</TableCell>

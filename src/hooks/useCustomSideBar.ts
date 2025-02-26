@@ -2,7 +2,7 @@ import { FaRegFileAlt } from "react-icons/fa";
 import { IoPeople } from "react-icons/io5";
 import { PiSignOutThin } from "react-icons/pi";
 import { GiNotebook } from "react-icons/gi";
-import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
+// import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 
 
 
@@ -17,14 +17,12 @@ export const useCustomSideBar = ({ userType }: { userType: string }) => {
     {
       tab: "Agents",
       icon: IoPeople,
-      tabLink: "/super-agent",
-      dropdown:IoIosArrowDown,
-      collapse:IoIosArrowDown
+      tabLink: "/agents",
     },
     {
       tab: "Sign Out",
       icon: PiSignOutThin,
-      tabLink: "/super-agent",
+      tabLink: "/",
     },
   ];
     const mainAgent = [
@@ -37,8 +35,6 @@ export const useCustomSideBar = ({ userType }: { userType: string }) => {
         tab: "Agents",
         icon: IoPeople,
         tabLink: "/super-agent",
-        dropdown:IoIosArrowDown,
-        collapse:IoIosArrowDown,
       },
       {
         tab: "Inventory Management",
@@ -48,7 +44,7 @@ export const useCustomSideBar = ({ userType }: { userType: string }) => {
       {
         tab: "Sign Out",
         icon: PiSignOutThin,
-        tabLink: "/super-agent",
+        tabLink: "/",
       },
     ];
     const subAgent = [
@@ -61,8 +57,6 @@ export const useCustomSideBar = ({ userType }: { userType: string }) => {
         tab: "Agents",
         icon: IoPeople,
         tabLink: "/super-agent",
-        dropdown:IoIosArrowDown,
-        collapse:IoIosArrowDown,
       },
       {
         tab: "Inventory Management",
@@ -85,8 +79,6 @@ export const useCustomSideBar = ({ userType }: { userType: string }) => {
         tab: "Agents",
         icon: IoPeople,
         tabLink: "/super-agent",
-        dropdown:IoIosArrowDown,
-        collapse:IoIosArrowDown,
       },
       {
         tab: "Inventory Management",
