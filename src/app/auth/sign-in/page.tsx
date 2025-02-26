@@ -1,6 +1,6 @@
 import React from "react";
 import AuthLayout from "@/components/auth/AuthLayout";
-import authBg from "../../../../public/img/auth-bg.png";
+import authBg from "../../../../public/assets/auth-bg.png"
 import Image from "next/image";
 import Link from "next/link";
 import SignInForm from "@/components/auth/SignInForm";
