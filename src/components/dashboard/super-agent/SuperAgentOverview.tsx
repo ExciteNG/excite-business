@@ -12,6 +12,7 @@ import { Copy } from "lucide-react";
 import YearlySalesChart from "../shared/YearlySalesChart";
 import TotalSalesChart from "../shared/TotalSalesChart";
 import { chartData } from "@/constants/dummy";
+import { distributorList } from "@/lib/dummyData";
 import DistributorTable from "../shared/DistributorTable";
 
 export default function SuperAgentOverview() {
@@ -66,7 +67,7 @@ export default function SuperAgentOverview() {
       </div>
 
       {/* Distributor table */}
-      <DistributorTable userType={""} distributors='' />
+      <DistributorTable distRank={'ALL'} distributors={distributorList} matrix={675} />
     </section>
   );
 }
