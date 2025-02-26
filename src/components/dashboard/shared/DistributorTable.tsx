@@ -47,12 +47,23 @@ const DistributorTable = ({ distRank, distributors, matrix }: { distRank: string
                   <TableRow key={key}>
                     <TableCell
                       className='text-center cursor-pointer'
-                      onClick={()=>pathNavFn(list)}>
+                      onClick={() => pathNavFn(list)}
+                    >
                       {list.name}
                     </TableCell>
-                    <TableCell className='text-center'>{list.lastModified}</TableCell>
-                    <TableCell className='text-center'>{list.location}</TableCell>
-                    <TableCell className='text-[#027A48] bg-[#ECFDF3] text-center'>
+                    <TableCell className='text-center'>
+                      {list.lastModified}
+                    </TableCell>
+                    <TableCell className='text-center'>
+                      {list.location}
+                    </TableCell>
+                    <TableCell
+                      className={`${
+                        list.category === "Main distributor"
+                          ? "text-[#027A48] bg-[#ECFDF3] text-center"
+                          : list.category === "Subdistributor"? " text-[#026AA2] bg-[#F0F9FF] text-center":''
+                      }`}
+                    >
                       &#10687; {list.category}
                     </TableCell>
                     <TableCell className='text-center'>

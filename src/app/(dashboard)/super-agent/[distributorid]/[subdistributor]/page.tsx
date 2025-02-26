@@ -9,7 +9,7 @@ const Page = () => {
     const { subdistributor } = useParams();
     const index = subdistributor.indexOf('%');
     const cleanFN = subdistributor.slice(0, index)
-    console.log(cleanFN);
+    console.log(cleanFN,': cleaned name');
   return (
       <section className='p-5'>
           <div className='space-y-9'>

@@ -1,6 +1,5 @@
 import React from 'react';
 import { useParams, useRouter } from "next/navigation";
-import { distributorList } from "@/lib/dummyData";
 import { DashCard } from "@/components/dashboard/shared/Card";
 import { IoPersonOutline } from "react-icons/io5";
 import { IoLocationOutline } from "react-icons/io5";
@@ -12,7 +11,7 @@ import { DisList } from '@/types/dashboard';
 const FullInventoryDash = ({perDistributor, id}:{perDistributor:DisList, id:string|string[]}) => {
     const router = useRouter();
     const paramsObj = useParams();
-    console.log(`/super-agent/${id}/${perDistributor.name}/${perDistributor.id}`);
+    // console.log(`/super-agent/${id}/${perDistributor.name}/${perDistributor.id}`);
 
     function pathNavLink(who:DisList) {
         if (Object.keys(paramsObj).length === 3) {
@@ -20,7 +19,7 @@ const FullInventoryDash = ({perDistributor, id}:{perDistributor:DisList, id:stri
             // return router.push(`/super-agent/${id}/${who.name}/${who.id}`);
         }
         
-        return router.push(`/super-agent/${id}/${who}`);
+        return router.push(`/super-agent/${id}/${who.name}`);
     };
     
   return (
@@ -61,6 +60,7 @@ const FullInventoryDash = ({perDistributor, id}:{perDistributor:DisList, id:stri
             </p>
           </div>
         </div>
+              
         {/* DASHBOARD CARDS */}
         <div className='flex items-center w-full space-x-5 px-1'>
           <DashCard width={40} title='Total Inventory' matrix={280} />
