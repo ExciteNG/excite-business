@@ -1,11 +1,11 @@
-import React from 'react';
-import Overview from '@/components/dashboard/super-agent/Overview';
+import React from 'react'
+import SuperAgentOverview from '@/components/dashboard/super-agent/SuperAgentOverview';
 
 const page = () => {
   return (
-    <section>
-      <Overview />
-    </section>
+    <main className='p-5'>
+      <SuperAgentOverview />
+    </main>
   )
 }
 
