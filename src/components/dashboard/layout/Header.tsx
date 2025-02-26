@@ -26,8 +26,8 @@ const Header = () => {
             size={20}
             onClick={() => router.back()}
           />
-          <div>
-            <MdKeyboardArrowRight /> Profile of {'David Willson'}
+          <div className='flex items-center'>
+            <MdKeyboardArrowRight /> <span>Profile of {"David Willson"}</span>
           </div>
         </div>
       )}
