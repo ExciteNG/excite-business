@@ -9,7 +9,8 @@ import { MdKeyboardArrowRight } from "react-icons/md";
 
 const Header = () => {
   const { distributor } = useParams();
-  const router = useRouter()
+  const router = useRouter();
+  const {name} = distributor !== undefined ? distributorList.filter((distri) => distri.id === distributor)[0]:{name:"name"};
 
   return (
     <nav className='sticky top-0 h-20 bg-white z-40 border border-slate-50 shadow w-full flex items-center justify-between px-5'>
@@ -19,15 +20,18 @@ const Header = () => {
           <p>Track, Manage your distributors</p>
         </div>
       ) : (
-        <div className='flex items-center'>
+        <div className='flex items-center space-x-1'>
           <RiHome6Line
             className='text-slate-500 cursor-pointer'
             title='Home'
             size={20}
             onClick={() => router.back()}
           />
-          <div className='flex items-center'>
-            <MdKeyboardArrowRight /> <span>Profile of {"David Willson"}</span>
+          <div className='flex items-center space-x-1 text-sm text-slate-600'>
+            <MdKeyboardArrowRight />{" "}
+            <span className=''>
+              Profile of <span className='font-medium'>{name}</span>
+            </span>
           </div>
         </div>
       )}
