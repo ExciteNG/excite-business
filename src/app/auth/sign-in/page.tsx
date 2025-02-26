@@ -1,6 +1,6 @@
 import React from "react";
 import AuthLayout from "@/components/auth/AuthLayout";
-import authBg from "../../../../public/assets/auth-bg.png"
+import authBg from "../../../../public/assets/img/auth-bg.png"
 import Image from "next/image";
 import Link from "next/link";
 import SignInForm from "@/components/auth/SignInForm";
@@ -18,10 +18,10 @@ export default function page() {
             <p className="text-sm font-light">
               Don&apos;t have an account?{" "}
               <Link
-                href="/auth/sign-up"
+                href="/auth/register/sub-agent"
                 className="text-[#A7CC48] hover-[#86ac25]"
               >
-                Join Excite Trade for free
+                Join Excite Business for free
               </Link>
             </p>
             <SignInForm />

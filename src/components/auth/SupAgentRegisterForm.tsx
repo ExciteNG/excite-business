@@ -9,6 +9,7 @@ import FormInput from "./FormInput";
 import PasswordInput from "./PasswordInput";
 import PrimaryButton from "../ui/PrimaryButton";
 import { useToast } from "@/hooks/use-toast";
+import { useRouter } from "next/navigation";
 
 export default function SupAgentForm() {
   const {
@@ -18,6 +19,7 @@ export default function SupAgentForm() {
     } = useForm<SupAgentRegisterInputs>({ resolver: zodResolver(SupAgentRegisterSchema) })
 
   const { toast } = useToast();
+  const router = useRouter()
 
   const onSubmit: SubmitHandler<SupAgentRegisterInputs> = (data) => {
     console.log(data);
@@ -27,6 +29,8 @@ export default function SupAgentForm() {
       title: "Success!",
       description: "Account created successfully!",
     });
+
+    router.push("/super-agent")
   };
 
   return (

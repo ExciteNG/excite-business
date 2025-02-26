@@ -7,7 +7,7 @@ import { SignInInputs} from "@/types/auth";
 import { SignInSchema } from "@/zodSchemas/schema";
 import Link from "next/link";
 import PrimaryButton from "../ui/PrimaryButton";
-// import { useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useToast } from "@/hooks/use-toast";
 import FormInput from "./FormInput";
 import PasswordInput from "./PasswordInput";
@@ -19,7 +19,7 @@ export default function SignInForm() {
     formState: { errors },
   } = useForm<SignInInputs>({ resolver: zodResolver(SignInSchema) })
 
-  // const router = useRouter();
+  const router = useRouter();
   const { toast } = useToast();
 
   const onSubmit: SubmitHandler<SignInInputs> = (data) => {
@@ -30,6 +30,8 @@ export default function SignInForm() {
       title: "Success!",
       description: "Sign in successfull!",
     });
+
+    router.push("/super-agent")
   };
 
   return (
