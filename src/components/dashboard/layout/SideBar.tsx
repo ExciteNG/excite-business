@@ -2,10 +2,17 @@ import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import exciteBusinessLogo from "@/../public/assets/img/image 29.png";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+
 import { useCustomSideBar } from '@/hooks/useCustomSideBar';
 
 const SideBar = () => {
-    const sideTabs = useCustomSideBar({ userType: 'SUPERAGENT' });
+  const sideTabs = useCustomSideBar({ userType: 'SUPERAGENT' });
 
   return (
     <div className='fixed left-0 top-0 h-screen w-[17rem] bg-[#101828]'>
@@ -16,16 +23,44 @@ const SideBar = () => {
               {sideTabs?.map((tab, index) => {
                 return (
                   <div key={index} className='shadow'>
-                    <Link href={tab.tabLink}>
-                      <div
-                        className={`group w-full bg-slate-100 p-2 px-3 shadow rounded flex items-center space-x-2 cursor-pointer`}
-                      >
-                        <tab.icon className='group-hover:text-[#A7CC48] group-hover:font-semibold' />
-                        <p className='w-fit group-hover:text-[#A7CC48] group-hover:font-semibold'>
-                          {tab.tab}
-                        </p>
-                      </div>
-                    </Link>
+                    {tab.tab === "Agents" ? (
+                      <Accordion type='single' collapsible>
+                        <AccordionItem value='1'>
+                          <AccordionTrigger
+                            className={`group w-full bg-slate-100 p-2 px-3 shadow rounded  cursor-pointer hover:no-underline`}
+                          >
+                            <p className='w-fit flex items-center space-x-2 group-hover:text-[#A7CC48] group-hover:font-semibold'>
+                              <tab.icon />
+                              <span className=''>{tab.tab}</span>
+                            </p>
+                          </AccordionTrigger>
+                          <AccordionContent className='bg-slate-100 rounded-b'>
+                            <ul className='space-y-1 p-2'>
+                              <li className='border-b border-slate-300 p-1'>
+                                Main Distributor
+                              </li>
+                              <li className='border-b border-slate-300 p-1'>
+                                Sub Distributor
+                              </li>
+                              <li className='border-b border-slate-300 p-1'>
+                                Retailer
+                              </li>
+                            </ul>
+                          </AccordionContent>
+                        </AccordionItem>
+                      </Accordion>
+                    ) : (
+                      <Link href={tab.tabLink}>
+                        <div
+                          className={`group w-full bg-slate-100 p-2 px-3 shadow rounded flex items-center space-x-2 cursor-pointer`}
+                        >
+                          <tab.icon className='group-hover:text-[#A7CC48] group-hover:font-semibold' />
+                          <p className='w-fit group-hover:text-[#A7CC48] group-hover:font-semibold'>
+                            {tab.tab}
+                          </p>
+                        </div>
+                      </Link>
+                    )}
                   </div>
                 );
               })}
