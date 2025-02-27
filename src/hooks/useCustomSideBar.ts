@@ -2,13 +2,14 @@ import { FaRegFileAlt } from "react-icons/fa";
 import { IoPeople } from "react-icons/io5";
 import { PiSignOutThin } from "react-icons/pi";
 import { GiNotebook } from "react-icons/gi";
+import { TabLinkProps } from "@/types/dashboard";
 // import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 
 
 
 export const useCustomSideBar = ({ userType }: { userType: string }) => {
     
-  const superAgent = [
+  const superAgent:TabLinkProps[] = [
     {
       tab: "Overview",
       icon: FaRegFileAlt,
@@ -17,7 +18,12 @@ export const useCustomSideBar = ({ userType }: { userType: string }) => {
     {
       tab: "Agents",
       icon: IoPeople,
-      tabLink: "/agents",
+      tabLink: "/super-agent/agent",
+      category: {
+        tabLink1: "/agent-category/mainagent",
+        tabLink2: "/agent-category/subagent",
+        tabLink3: "/agent-category/retailer",
+      },
     },
     {
       tab: "Sign Out",
@@ -34,7 +40,12 @@ export const useCustomSideBar = ({ userType }: { userType: string }) => {
       {
         tab: "Agents",
         icon: IoPeople,
-        tabLink: "/super-agent",
+        tabLink: "/super-agent/agent",
+        category: {
+          tabLink1: "/agent-category/subagent",
+          tabLink2: "/agent-category/retailer",
+          tabLink3: "#",
+        },
       },
       {
         tab: "Inventory Management",
@@ -56,7 +67,12 @@ export const useCustomSideBar = ({ userType }: { userType: string }) => {
       {
         tab: "Agents",
         icon: IoPeople,
-        tabLink: "/super-agent",
+        tabLink: "/super-agent/agent",
+        category: {
+          tabLink1: "/agent-category/retailer",
+          tabLink2: "#",
+          tabLink3: "#",
+        },
       },
       {
         tab: "Inventory Management",
@@ -78,7 +94,12 @@ export const useCustomSideBar = ({ userType }: { userType: string }) => {
       {
         tab: "Agents",
         icon: IoPeople,
-        tabLink: "/super-agent",
+        tabLink: "/super-agent/agent",
+        category: {
+          tabLink1: "#",
+          tabLink2: "#",
+          tabLink3: "#",
+        },
       },
       {
         tab: "Inventory Management",
