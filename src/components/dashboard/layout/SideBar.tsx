@@ -1,6 +1,6 @@
 "use client"
 import React from 'react';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
 import exciteBusinessLogo from "@/../public/assets/img/image 29.png";
@@ -15,6 +15,7 @@ import { useCustomSideBar } from '@/hooks/useCustomSideBar';
 
 const SideBar = () => {
   const pathName = usePathname();
+  const router = useRouter();
   const sideTabs = useCustomSideBar({ userType: 'SUPERAGENT' });
 
   return (
@@ -23,7 +24,8 @@ const SideBar = () => {
         <Image src={exciteBusinessLogo} alt='exciteBusiness logo' className='w-20 mx-auto'/>
           </div>
           <section className='p-6 space-y-4'>
-              {sideTabs?.map((tab, index) => {
+        {sideTabs?.map((tab, index) => {
+          // let categoryKeys = ['1', '2', '3'];
                 return (
                   <div key={index} className='shadow'>
                     {tab.tab === "Agents" ? (
@@ -34,8 +36,10 @@ const SideBar = () => {
                           >
                             <p
                               className={`${
-                                pathName === tab.tabLink &&
-                                "text-[#A7CC48] font-semibold"
+                                ((pathName === tab.category?.tabLink1) ||
+                                 (pathName === tab.category?.tabLink2) ||
+                                 (pathName === tab.category?.tabLink3)) &&
+                                  "text-[#A7CC48] font-semibold"
                               } w-fit flex items-center space-x-2 group-hover:text-[#A7CC48] group-hover:font-semibold`}
                             >
                               <tab.icon />
@@ -44,13 +48,37 @@ const SideBar = () => {
                           </AccordionTrigger>
                           <AccordionContent className='bg-slate-100 rounded-b'>
                             <ul className='space-y-1 p-2'>
-                              <li className='border-b border-slate-300 p-1'>
+                              <li
+                                className={`${
+                                  pathName === tab.category?.tabLink1 &&
+                                  "text-[#A7CC48] font-medium"
+                                } border-b border-slate-300 p-1 cursor-pointer`}
+                                onClick={() =>
+                                  router.push(`${tab.category?.tabLink1}`)
+                                }
+                              >
                                 Main Distributor
                               </li>
-                              <li className='border-b border-slate-300 p-1'>
+                              <li
+                                className={`${
+                                  pathName === tab.category?.tabLink2 &&
+                                  "text-[#A7CC48] font-medium"
+                                } border-b border-slate-300 p-1 cursor-pointer`}
+                                onClick={() =>
+                                  router.push(`${tab.category?.tabLink2}`)
+                                }
+                              >
                                 Sub Distributor
                               </li>
-                              <li className='border-b border-slate-300 p-1'>
+                              <li
+                                className={`${
+                                  pathName === tab.category?.tabLink3 &&
+                                  "text-[#A7CC48] font-medium"
+                                } border-b border-slate-300 p-1 cursor-pointer`}
+                                onClick={() =>
+                                  router.push(`${tab.category?.tabLink3}`)
+                                }
+                              >
                                 Retailer
                               </li>
                             </ul>

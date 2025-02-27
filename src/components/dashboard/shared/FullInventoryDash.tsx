@@ -36,16 +36,16 @@ const FullInventoryDash = ({perDistributor, id, inventory, sales}:{perDistributo
               <IoPersonOutline size={50} className='text-slate-500' />
             </div>
             <div className='space-y-1.5'>
-              <p className='font-bold text-xl'>{perDistributor.name}</p>
+              <p className='font-bold text-xl'>{perDistributor?.name}</p>
               <div className='flex items-center space-x-3'>
                 <p className='bg-[#ECFDF3] text-[#027A48] flex items-center w-fit px-2 rounded-full space-x-1'>
                   <span>&#8226; </span>
-                  <span className='text-xs'>{perDistributor.category}</span>
+                  <span className='text-xs'>{perDistributor?.category}</span>
                 </p>
                 <div className='flex items-center space-x-2'>
                   <IoLocationOutline className='text-red-800' />{" "}
                   <span className='text-xs font-medium'>
-                    {perDistributor.location}
+                    {perDistributor?.location}
                   </span>
                 </div>
                 <div className='flex items-center space-x-2'>
@@ -60,7 +60,7 @@ const FullInventoryDash = ({perDistributor, id, inventory, sales}:{perDistributo
               className={`${navKeys === 5 && 'hidden'} text-xs underline cursor-pointer`}
               onClick={() => pathNavLink(perDistributor)}
             >
-                          View {navKeys === 3 ? 'Retailers': 'Distributors'} working with {perDistributor.name}
+                          View {navKeys === 3 ? 'Retailers': 'Distributors'} working with {perDistributor?.name}
             </p>
           </div>
         </div>

@@ -15,22 +15,22 @@ const Header = () => {
     retailer,
     retailerid,
   } = useParams();
-  // const params = useParams();
+  const params = useParams();
   const router = useRouter();
-
+console.log(params)
   //filter distributor ID
   const { name } =
-    distributorid !== undefined
+    distributorid !== undefined && distributorid === 'agentsNotParams'
       ? distributorList.filter((distri) => distri.id === distributorid)[0]
       : { name: "name" };
   // filter subdistributor ID
   const { name: subName } =
-    subdistributorid !== undefined
+    subdistributorid !== undefined && distributorid === 'agentsNotParams'
       ? subDistributorList.filter((distri) => distri.id === subdistributorid)[0]
       : { name: "name" };
   // filter retailer ID
   const { name: subSubName } =
-    retailerid !== undefined
+    retailerid !== undefined && distributorid === 'agentsNotParams'
       ? retailerList.filter((distri) => distri.id === retailerid)[0]
       : { name: "name" };
 
@@ -107,7 +107,7 @@ const Header = () => {
 
       <div className='flex items-center space-x-2'>
         <IoIosNotificationsOutline size={25} />
-        <div className='p-5 w-fit rounded-full bg-slate-300'></div>
+        <div className='p-5 w-fit rounded-full bg-slate-200 shadow border border-slate-300'></div>
         <p>SBC</p>
       </div>
     </nav>
