@@ -10,6 +10,7 @@ import { Pagination,PaginationContent, PaginationItem, PaginationNext, Paginatio
 
 const DistributorTable = ({ userType, distributors }: { userType: string, distributors: string }) => {
   const router = useRouter();
+  console.log(userType, distributors);
   return (
     <section>
       <div className=' border border-slate-100 shadow p-2'>
