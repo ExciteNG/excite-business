@@ -9,7 +9,12 @@ const Page = () => {
     const thisSubDistributor = subDistributorList.filter((distri) => distri.id === subdistributorid)[0];
   return (
     <section className='p-5'>
-      <FullInventoryDash perDistributor={thisSubDistributor} id={subdistributorid} />
+      <FullInventoryDash
+        perDistributor={thisSubDistributor}
+        id={subdistributorid}
+        inventory={80}
+        sales={23}
+      />
     </section>
   )
 }

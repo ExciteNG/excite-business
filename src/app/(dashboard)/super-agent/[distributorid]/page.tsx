@@ -13,7 +13,12 @@ const Page = () => {
 
   return (
     <section className='p-5'>
-      <FullInventoryDash perDistributor={ thisDistributor} id={distributorid} />
+      <FullInventoryDash
+        perDistributor={thisDistributor}
+        id={distributorid}
+        inventory={280}
+        sales={143}
+      />
     </section>
   );
 }

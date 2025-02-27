@@ -2,22 +2,38 @@
 import React from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { IoIosNotificationsOutline } from "react-icons/io";
-import { distributorList, subDistributorList } from '@/lib/dummyData';
+import { distributorList, subDistributorList, retailerList } from '@/lib/dummyData';
 import { RiHome6Line } from "react-icons/ri";
 import { MdKeyboardArrowRight } from "react-icons/md";
 
 
 const Header = () => {
-  const { distributorid, subdistributor, subdistributorid } = useParams(); const params = useParams();
+  const {
+    distributorid,
+    subdistributor,
+    subdistributorid,
+    retailer,
+    retailerid,
+  } = useParams();
+  // const params = useParams();
   const router = useRouter();
 
-  //filter distributor ID 
-  const { name } = distributorid !== undefined ? distributorList.filter((distri) => distri.id === distributorid)[0] : { name: "name" };
+  //filter distributor ID
+  const { name } =
+    distributorid !== undefined
+      ? distributorList.filter((distri) => distri.id === distributorid)[0]
+      : { name: "name" };
   // filter subdistributor ID
-  const { name:subName } =
+  const { name: subName } =
     subdistributorid !== undefined
-      ? subDistributorList.filter((distri) => distri.id === subdistributorid)[0] : { name: "name" };
-  
+      ? subDistributorList.filter((distri) => distri.id === subdistributorid)[0]
+      : { name: "name" };
+  // filter retailer ID
+  const { name: subSubName } =
+    retailerid !== undefined
+      ? retailerList.filter((distri) => distri.id === retailerid)[0]
+      : { name: "name" };
+
   return (
     <nav className='sticky top-0 h-20 bg-white z-40 border border-slate-50 shadow w-full flex items-center justify-between px-5'>
       {distributorid === undefined ? (
@@ -29,7 +45,7 @@ const Header = () => {
         <div className='flex items-center space-x-1'>
           <RiHome6Line
             className='text-slate-500 cursor-pointer'
-            title='Home'
+            title={`${subdistributor === undefined? 'Home':'Go Back'}`}
             size={20}
             onClick={() => router.back()}
           />
@@ -60,6 +76,29 @@ const Header = () => {
               <MdKeyboardArrowRight />{" "}
               <span className=''>
                 Profile of <span className='font-medium'>{subName}</span>
+              </span>
+            </div>
+          )}
+          {retailer !== undefined && (
+            <div className='flex items-center space-x-1 text-sm text-slate-600'>
+              <MdKeyboardArrowRight />{" "}
+              {retailerid === undefined ? (
+                <span className=''>
+                  Retailers under <span className='font-medium'>{subName}</span>
+                </span>
+              ) : (
+                <span className=''>
+                  Retailers under...{" "}
+                  {/* <span className='font-medium'>{name}</span> */}
+                </span>
+              )}
+            </div>
+          )}
+          {retailerid !== undefined && (
+            <div className='flex items-center space-x-1 text-sm text-slate-600'>
+              <MdKeyboardArrowRight />{" "}
+              <span className=''>
+                Profile of <span className='font-medium'>{subSubName}</span>
               </span>
             </div>
           )}

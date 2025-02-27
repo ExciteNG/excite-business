@@ -8,15 +8,19 @@ import InventoryManagement from "@/components/dashboard/shared/InventoryManageme
 import { DisList } from '@/types/dashboard';
 
 
-const FullInventoryDash = ({perDistributor, id}:{perDistributor:DisList, id:string|string[]}) => {
+const FullInventoryDash = ({perDistributor, id, inventory, sales}:{perDistributor:DisList, id:string|string[], inventory:number, sales:number}) => {
     const router = useRouter();
     const paramsObj = useParams();
-    // console.log(`/super-agent/${id}/${perDistributor.name}/${perDistributor.id}`);
+  const navKeys = Object.keys(paramsObj).length;
+    console.log(paramsObj);
+    const {distributorid, subdistributor } = paramsObj;
 
     function pathNavLink(who:DisList) {
-        if (Object.keys(paramsObj).length === 3) {
-            return alert('fix this link chain')
-            // return router.push(`/super-agent/${id}/${who.name}/${who.id}`);
+        if (navKeys === 3) {
+            //  alert('fix this link chain')
+            return router.push(`/super-agent/${distributorid}/${subdistributor}/${id}/${who.name}`);
+        } else if (navKeys === 4) {
+          return alert("fix this link chain");
         }
         
         return router.push(`/super-agent/${id}/${who.name}`);
@@ -53,18 +57,18 @@ const FullInventoryDash = ({perDistributor, id}:{perDistributor:DisList, id:stri
           </div>
           <div>
             <p
-              className='text-xs underline cursor-pointer'
+              className={`${navKeys === 5 && 'hidden'} text-xs underline cursor-pointer`}
               onClick={() => pathNavLink(perDistributor)}
             >
-              View distributors working with {perDistributor.name}
+                          View {navKeys === 3 ? 'Retailers': 'Distributors'} working with {perDistributor.name}
             </p>
           </div>
         </div>
               
         {/* DASHBOARD CARDS */}
         <div className='flex items-center w-full space-x-5 px-1'>
-          <DashCard width={40} title='Total Inventory' matrix={280} />
-          <DashCard width={40} title='Total Sales' matrix={143} />
+          <DashCard width={40} title='Total Inventory' matrix={inventory} />
+          <DashCard width={40} title='Total Sales' matrix={sales} />
         </div>
 
         {/* INVENTORY MANAGEMENT TABLE */}
