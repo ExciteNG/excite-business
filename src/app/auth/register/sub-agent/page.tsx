@@ -12,7 +12,7 @@ export default function page() {
       <section className="hidden lg:flex flex-1">
         <Image src={authBg} alt="auth-bg" className="w-full h-full" />
       </section>
-      <section className="flex-1">
+      <section className="flex-1 pt-20 lg:pt-0">
         <div className="w-full h-full relative flex justify-center overflow-y-scroll no-scrollbar">
           <div className="w-[90%] max-w-[30rem] py-6 px-4">
             <h1 className="font-semibold text-xl">Join Excite Enterprise for Free</h1>
