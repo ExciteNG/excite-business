@@ -20,17 +20,17 @@ const Header = () => {
 console.log(params)
   //filter distributor ID
   const { name } =
-    distributorid !== undefined && distributorid === 'agentsNotParams'
+    distributorid !== undefined
       ? distributorList.filter((distri) => distri.id === distributorid)[0]
       : { name: "name" };
   // filter subdistributor ID
   const { name: subName } =
-    subdistributorid !== undefined && distributorid === 'agentsNotParams'
+    subdistributorid !== undefined
       ? subDistributorList.filter((distri) => distri.id === subdistributorid)[0]
       : { name: "name" };
   // filter retailer ID
   const { name: subSubName } =
-    retailerid !== undefined && distributorid === 'agentsNotParams'
+    retailerid !== undefined
       ? retailerList.filter((distri) => distri.id === retailerid)[0]
       : { name: "name" };
 

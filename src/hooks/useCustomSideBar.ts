@@ -20,9 +20,9 @@ export const useCustomSideBar = ({ userType }: { userType: string }) => {
       icon: IoPeople,
       tabLink: "/super-agent/agent",
       category: {
-        tabLink1: "/agent-category/mainagent",
-        tabLink2: "/agent-category/subagent",
-        tabLink3: "/agent-category/retailer",
+        tabLink1: "/super-agent/agent-category/mainagent",
+        tabLink2: "/super-agent/agent-category/subagent",
+        tabLink3: "/super-agent/agent-category/retailer",
       },
     },
     {
@@ -35,22 +35,22 @@ export const useCustomSideBar = ({ userType }: { userType: string }) => {
       {
         tab: "Overview",
         icon: FaRegFileAlt,
-        tabLink: "/super-agent",
+        tabLink: "/main-agent",
       },
       {
         tab: "Agents",
         icon: IoPeople,
-        tabLink: "/super-agent/agent",
+        tabLink: "/main-agent/agent",
         category: {
-          tabLink1: "/agent-category/subagent",
-          tabLink2: "/agent-category/retailer",
-          tabLink3: "#",
+          tabLink1: "#",
+          tabLink2: "/main-agent/agent-category/subagent",
+          tabLink3: "/main-agent/agent-category/retailer",
         },
       },
       {
         tab: "Inventory Management",
         icon: GiNotebook,
-        tabLink: "/super-agent",
+        tabLink: "/inventory-management",
       },
       {
         tab: "Sign Out",
@@ -62,39 +62,39 @@ export const useCustomSideBar = ({ userType }: { userType: string }) => {
       {
         tab: "Overview",
         icon: FaRegFileAlt,
-        tabLink: "/super-agent",
+        tabLink: "/sub-agent",
       },
       {
         tab: "Agents",
         icon: IoPeople,
-        tabLink: "/super-agent/agent",
+        tabLink: "/sub-agent/agent",
         category: {
-          tabLink1: "/agent-category/retailer",
+          tabLink1: "#",
           tabLink2: "#",
-          tabLink3: "#",
+          tabLink3: "/subagent/agent-category/retailer",
         },
       },
       {
         tab: "Inventory Management",
         icon: GiNotebook,
-        tabLink: "/super-agent",
+        tabLink: "/inventory-management",
       },
       {
         tab: "Sign Out",
         icon: PiSignOutThin,
-        tabLink: "/super-agent",
+        tabLink: "/",
       },
     ];
     const retailer = [
       {
         tab: "Overview",
         icon: FaRegFileAlt,
-        tabLink: "/super-agent",
+        tabLink: "/retailer",
       },
       {
         tab: "Agents",
         icon: IoPeople,
-        tabLink: "/super-agent/agent",
+        tabLink: "/retailer/agent",
         category: {
           tabLink1: "#",
           tabLink2: "#",
@@ -104,12 +104,12 @@ export const useCustomSideBar = ({ userType }: { userType: string }) => {
       {
         tab: "Inventory Management",
         icon: GiNotebook,
-        tabLink: "/super-agent",
+        tabLink: "/inventory-management",
       },
       {
         tab: "Sign Out",
         icon: PiSignOutThin,
-        tabLink: "/super-agent",
+        tabLink: "/",
       },
     ];
     
