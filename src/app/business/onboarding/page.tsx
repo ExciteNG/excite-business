@@ -2,7 +2,7 @@ import React from "react";
 import AuthLayout from "@/components/auth/AuthLayout";
 import Image from "next/image";
 import SupAgentOnboardingForm from "@/components/auth/SupAgentOnboardingForm";
-import authBg from "../../../../../public/assets/auth.png";
+import authBg from "../../../../public/assets/auth.png";
 
 export default function page() {
   return (
