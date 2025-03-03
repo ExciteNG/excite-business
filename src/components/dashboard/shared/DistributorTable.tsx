@@ -15,14 +15,15 @@ const DistributorTable = ({ distRank, distributors, matrix }: { distRank: string
 
   // NAVIGATING DISTRIBUTORS TO THERE SUB DISTRIBUTORS;
   function pathNavFn(list: DisList) {
+    const baseLink = "/super-agent/distribution";
     if (distributorid !== undefined && retailer === undefined) {
 
-      return router.push(`/super-agent/${distributorid}/${subdistributor}/${list.id}`);
+      return router.push(`${baseLink}/${distributorid}/${subdistributor}/${list.id}`);
     } else if (retailer !== undefined) {
 
-      return router.push(`/super-agent/${distributorid}/${subdistributor}/${subdistributorid}/${retailer}/${list.id}`);
+      return router.push(`${baseLink}/${distributorid}/${subdistributor}/${subdistributorid}/${retailer}/${list.id}`);
     }
-   return router.push(`/super-agent/${list.id}`);
+   return router.push(`${baseLink}/${list.id}`);
   };
 
   return (

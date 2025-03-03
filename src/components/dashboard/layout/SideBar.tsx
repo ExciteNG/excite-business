@@ -16,7 +16,7 @@ import { useCustomSideBar } from '@/hooks/useCustomSideBar';
 const SideBar = () => {
   const pathName = usePathname();
   const router = useRouter();
-  const sideTabs = useCustomSideBar({ userType: 'SUPERAGENT' });
+  const sideTabs = useCustomSideBar({ userType: 'MAINAGENT' });
 
   return (
     <div className='fixed left-0 top-0 h-screen w-[17rem] bg-[#101828]'>
@@ -36,10 +36,10 @@ const SideBar = () => {
                           >
                             <p
                               className={`${
-                                ((pathName === tab.category?.tabLink1) ||
-                                 (pathName === tab.category?.tabLink2) ||
-                                 (pathName === tab.category?.tabLink3)) &&
-                                  "text-[#A7CC48] font-semibold"
+                                (pathName === tab.category?.tabLink1 ||
+                                  pathName === tab.category?.tabLink2 ||
+                                  pathName === tab.category?.tabLink3) &&
+                                "text-[#A7CC48] font-semibold"
                               } w-fit flex items-center space-x-2 group-hover:text-[#A7CC48] group-hover:font-semibold`}
                             >
                               <tab.icon />
@@ -52,6 +52,10 @@ const SideBar = () => {
                                 className={`${
                                   pathName === tab.category?.tabLink1 &&
                                   "text-[#A7CC48] font-medium"
+                                } ${
+                                  (pathName.startsWith("/main-agent") ||
+                                    pathName.startsWith("/sub-agent") ||
+                                    pathName.startsWith("/retailer")) && "hidden"
                                 } border-b border-slate-300 p-1 cursor-pointer`}
                                 onClick={() =>
                                   router.push(`${tab.category?.tabLink1}`)
@@ -63,6 +67,10 @@ const SideBar = () => {
                                 className={`${
                                   pathName === tab.category?.tabLink2 &&
                                   "text-[#A7CC48] font-medium"
+                                } ${
+                                  (pathName.startsWith("/sub-agent") ||
+                                    pathName.startsWith("/retailer")) &&
+                                  "hidden"
                                 } border-b border-slate-300 p-1 cursor-pointer`}
                                 onClick={() =>
                                   router.push(`${tab.category?.tabLink2}`)
@@ -74,7 +82,8 @@ const SideBar = () => {
                                 className={`${
                                   pathName === tab.category?.tabLink3 &&
                                   "text-[#A7CC48] font-medium"
-                                } border-b border-slate-300 p-1 cursor-pointer`}
+                                  } ${pathName.startsWith("/retailer") && 'hidden'} 
+                                 border-b border-slate-300 p-1 cursor-pointer`}
                                 onClick={() =>
                                   router.push(`${tab.category?.tabLink3}`)
                                 }

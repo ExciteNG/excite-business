@@ -12,18 +12,19 @@ const FullInventoryDash = ({perDistributor, id, inventory, sales}:{perDistributo
     const router = useRouter();
     const paramsObj = useParams();
   const navKeys = Object.keys(paramsObj).length;
-    console.log(paramsObj);
+    // console.log(paramsObj);
     const {distributorid, subdistributor } = paramsObj;
 
-    function pathNavLink(who:DisList) {
+  function pathNavLink(who: DisList) {
+    const baseLink = '/super-agent/distribution';
         if (navKeys === 3) {
             //  alert('fix this link chain')
-            return router.push(`/super-agent/${distributorid}/${subdistributor}/${id}/${who.name}`);
+            return router.push(`${baseLink}/${distributorid}/${subdistributor}/${id}/${who.name}`);
         } else if (navKeys === 4) {
           return alert("fix this link chain");
         }
         
-        return router.push(`/super-agent/${id}/${who.name}`);
+        return router.push(`${baseLink}/${id}/${who.name}`);
     };
     
   return (
