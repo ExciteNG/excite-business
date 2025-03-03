@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { Raleway } from 'next/font/google'
-import { Toaster } from "@/components/ui/toaster"
+import { Raleway } from "next/font/google";
+import { Toaster } from "@/components/ui/toaster";
+import RQProvider from "@/components/RQProvider";
 
 export const metadata: Metadata = {
   title: "Excite Business",
@@ -10,8 +11,8 @@ export const metadata: Metadata = {
 
 const raleway = Raleway({
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
-  subsets: ['latin'],
-})
+  subsets: ["latin"],
+});
 
 export default function RootLayout({
   children,
@@ -20,12 +21,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${raleway.className} text-[#171717] text-sm xl:text-base antialiased`}
-      >
-        {children}
-        <Toaster />
-      </body>
+      <RQProvider>
+        <body
+          className={`${raleway.className} text-[#171717] text-sm xl:text-base antialiased`}
+        >
+          {children}
+          <Toaster />
+        </body>
+      </RQProvider>
     </html>
   );
 }
+

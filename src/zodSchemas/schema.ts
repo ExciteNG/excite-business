@@ -17,13 +17,14 @@ export const SignInSchema = z.object({
     .min(8, { message: "Password must be 8 or more characters long" }),
 });
 
-export const SupAgentRegisterSchema = z.object({
-    companyName: z
+export const SupAgentRegisterSchema = z
+  .object({
+    name: z
       .string({
         required_error: "Company Name is required",
       })
       .min(1, { message: "Company Name is required" }),
-    companyEmail: z
+    email: z
       .string({
         required_error: "Email is required",
         invalid_type_error: "Email must be a string",
@@ -49,7 +50,8 @@ export const SupAgentRegisterSchema = z.object({
     path: ["confirmPassword"],
   });
 
-  export const SubAgentRegisterSchema = z.object({
+export const SubAgentRegisterSchema = z
+  .object({
     name: z
       .string({
         required_error: "Company Name is required",
@@ -62,17 +64,27 @@ export const SupAgentRegisterSchema = z.object({
       })
       .min(1, { message: "Email is required" })
       .email({ message: "Invalid email address" }),
-      referralCode: z
+    referralCode: z
       .string({
         required_error: "Referral Code is required",
       })
       .min(1, { message: "Referral Code is required" }),
-      location: z
+    address: z
       .string({
-        required_error: "Location is required",
+        required_error: "Address is required",
       })
-      .min(1, { message: "Location is required" }),
-      phoneNumber: z
+      .min(1, { message: "Address is required" }),
+    state: z
+      .string({
+        required_error: "State is required",
+      })
+      .min(1, { message: "State is required" }),
+    lga: z
+      .string({
+        required_error: "Local government area is required",
+      })
+      .min(1, { message: "Local government area is required" }),
+    phoneNumber: z
       .string({
         required_error: "Phone Number is required",
       })
@@ -95,3 +107,41 @@ export const SupAgentRegisterSchema = z.object({
     message: "Passwords do not match",
     path: ["confirmPassword"],
   });
+
+export const SupAgentOnboardingSchema = z.object({
+  image: z
+    .union([
+      z.instanceof(File, { message: "Image is required" }),
+      z.string().optional(),
+    ])
+    .refine((value) => value instanceof File || typeof value === "string", {
+      message: "Image is required",
+    }),
+  acronym: z
+    .string({
+      required_error: "Acronym is required",
+    })
+    .min(1, { message: "Acronym is required" }),
+  industry: z
+    .string({
+      required_error: "Industry is required",
+      invalid_type_error: "Industry must be a string",
+    })
+    .min(1, { message: "Industry is required" }),
+  staffSize: z.string({
+    required_error: "Staff size is required",
+    invalid_type_error: "Staff size must be a string",
+  }),
+  // products: z
+  //   .array(
+  //     z.string({
+  //       required_error: "Product is required",
+  //       invalid_type_error: "Product must be a string",
+  //     })
+  //   )
+  //   .optional(),
+  // .min(1, { message: "Must have at least 1 product" }),
+});
+
+
+
