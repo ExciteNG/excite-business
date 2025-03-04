@@ -8,10 +8,10 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { IoIosArrowRoundDown } from "react-icons/io";
-import { inventoryManagement } from '@/lib/dummyData';
 import { IoMdArrowDropup } from "react-icons/io";
+import { InventoryProps } from '@/types/dashboard';
 
-const InventoryManagement = () => {
+const InventoryTable = ({inventoryList}:{inventoryList: InventoryProps[]}) => {
     return (
       <div className=' border border-slate-100 shadow p-2'>
         <div className='p-2 border-b'>
@@ -33,7 +33,7 @@ const InventoryManagement = () => {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {inventoryManagement.map((list, key) => {
+              {inventoryList.map((list, key) => {
                 return (
                   <TableRow key={key}>
                     <TableCell className='text-center cursor-pointer'>
@@ -67,4 +67,4 @@ const InventoryManagement = () => {
     );
 }
 
-export default InventoryManagement
+export default InventoryTable;

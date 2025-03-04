@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { useRouter, useParams } from "next/navigation";
+import { useRouter, useParams, usePathname } from "next/navigation";
 import {
   Table,
   TableBody,
@@ -21,6 +21,7 @@ import {
   PaginationEllipsis,
 } from "@/components/ui/pagination";
 import { DisList } from "@/types/dashboard";
+import { pathNavFn } from "@/constants/tableLinkFns";
 
 const DistributorTable = ({
   distRank,
@@ -31,25 +32,25 @@ const DistributorTable = ({
   distributors: DisList[];
   matrix: number;
 }) => {
-  const { distributorid, subdistributor, subdistributorid, retailer } =
+  const { distributorid, subdistributor,  subdistributorid, retailer } =
     useParams();
+  const paramObject4Link = { distributorid, subdistributor, subdistributorid, retailer };
   const router = useRouter();
-  // console.log(distributors);
+  const pathName = usePathname();
+  // console.log(paramObject4Link);
 
   // NAVIGATING DISTRIBUTORS TO THERE SUB DISTRIBUTORS;
-  function pathNavFn(list: DisList) {
-    const baseLink = "/super-agent/distribution";
-    if (distributorid !== undefined && retailer === undefined) {
-      return router.push(
-        `${baseLink}/${distributorid}/${subdistributor}/${list.id}`
-      );
-    } else if (retailer !== undefined) {
-      return router.push(
-        `${baseLink}/${distributorid}/${subdistributor}/${subdistributorid}/${retailer}/${list.id}`
-      );
-    }
-    return router.push(`${baseLink}/${list.id}`);
-  }
+  // function pathNavFn(list: DisList) {
+  //   const baseLink = "/super-agent/distribution";
+  //   if (distributorid !== undefined && retailer === undefined) {
+
+  //     return router.push(`${baseLink}/${distributorid}/${subdistributor}/${list.id}`);
+  //   } else if (retailer !== undefined) {
+
+  //     return router.push(`${baseLink}/${distributorid}/${subdistributor}/${subdistributorid}/${retailer}/${list.id}`);
+  //   }
+  //  return router.push(`${baseLink}/${list.id}`);
+  // };
 
   function pathNavFnNew(list: DisList) {
     const baseLink = "/business";
@@ -64,13 +65,12 @@ const DistributorTable = ({
     }
     return router.push(`${baseLink}/${list.id}`);
   }
-
   return (
     <section>
-      <div className=" border border-slate-100 shadow p-2">
-        <div className="p-2 border-b flex items-center space-x-4">
-          <h3 className="font-semibold">
-            {distRank}&apos;s{" "}
+      <div className=' border border-slate-100 shadow p-2'>
+        <div className='p-2 border-b flex items-center space-x-4'>
+          <h3 className='font-semibold'>
+            {distRank}<span className={`${distRank === 'All' && 'hidden'}`}>&apos;</span>{" "}
             {retailer !== undefined ? "Retailers" : "Distributors"}
           </h3>
           <p className="text-[#7b9833] bg-[#f5fedc] text-sm w-10 text-center rounded-full shadow">
@@ -98,8 +98,8 @@ const DistributorTable = ({
                 return (
                   <TableRow key={key}>
                     <TableCell
-                      className="text-center cursor-pointer"
-                      onClick={() => pathNavFnNew(list)}
+                      className='text-center cursor-pointer'
+                      onClick={() => pathNavFn(list, paramObject4Link, pathName, router)}
                       title={`View ${list.name}'s Profile`}
                     >
                       {list.name}
@@ -177,4 +177,6 @@ const DistributorTable = ({
 };
 
 export default DistributorTable;
+
+
 

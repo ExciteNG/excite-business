@@ -1,4 +1,11 @@
 import React from "react";
+
+export interface ParamsLinkProp {
+  distributorid: string |string[];
+  subdistributor: string |string[];
+  subdistributorid: string |string[];
+  retailer: string |string[];
+}
 export interface DisList {
   name: string;
   lastModified: string;
@@ -6,7 +13,7 @@ export interface DisList {
   category: string;
   performance: string;
   id: string;
-}
+};
 export interface DashProps {
   width: number;
   title: string;
@@ -22,4 +29,13 @@ export interface TabLinkProps {
     tabLink2?: string;
     tabLink3?: string;
   }
-}
+};
+
+export interface InventoryProps {
+  batch: string;
+  product: string;
+  enterDate: string;
+  unitPrice: string;
+  quantity: string;
+  performance: string;
+  }

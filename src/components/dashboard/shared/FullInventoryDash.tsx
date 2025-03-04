@@ -4,7 +4,8 @@ import { DashCard } from "@/components/dashboard/shared/Card";
 import { IoPersonOutline } from "react-icons/io5";
 import { IoLocationOutline } from "react-icons/io5";
 import { FiGift } from "react-icons/fi";
-import InventoryManagement from "@/components/dashboard/shared/InventoryManagement";
+import InventoryManagement from "@/components/dashboard/shared/InventoryTable";
+import { inventoryManagement } from '@/lib/dummyData';
 import { DisList } from "@/types/dashboard";
 
 const FullInventoryDash = ({
@@ -87,7 +88,7 @@ const FullInventoryDash = ({
         </div>
 
         {/* INVENTORY MANAGEMENT TABLE */}
-        <InventoryManagement />
+        <InventoryManagement inventoryList={inventoryManagement} />
       </div>
     </>
   );

@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 import React from "react";
-import { useParams, useRouter } from "next/navigation";
+import { useParams, usePathname, useRouter } from "next/navigation";
 import { IoIosNotificationsOutline } from "react-icons/io";
 import {
   distributorList,
@@ -10,6 +10,13 @@ import {
 } from "@/lib/dummyData";
 import { RiHome6Line } from "react-icons/ri";
 import { MdKeyboardArrowRight } from "react-icons/md";
+
+const company = {
+  super: "SBC",
+  main: "MainPartner",
+  sub: "SubPartner",
+  retail: "Retailer",
+};
 import { useReactQuery } from "@/services/apiHelper";
 
 const Header = () => {
@@ -23,7 +30,10 @@ const Header = () => {
     retailerid,
   } = useParams();
   const params = useParams();
+  const pathName = usePathname();
   const router = useRouter();
+  console.log(pathName.split("/"));
+
   console.log("Header: ", params, data?.data.data.image.Location, isPending);
   //filter distributor ID
   const { name } =
@@ -43,7 +53,7 @@ const Header = () => {
 
   return (
     <nav className="sticky top-0 h-20 bg-white z-40 border border-slate-50 shadow w-full flex items-center justify-between px-5">
-      {distributorid === undefined ? (
+      {Object.keys(params).length === 0 && pathName.split("/").length === 2 ? (
         <div className="">
           <h1 className="text-lg font-bold">
             Welcome!{" "}
@@ -63,9 +73,13 @@ const Header = () => {
           />
           <div className="flex items-center space-x-1 text-sm text-slate-600">
             <MdKeyboardArrowRight />{" "}
-            <span className="">
-              Profile of <span className="font-medium">{name}</span>
-            </span>
+            {pathName.includes("inventory") ? ( //THIS CODE WILL NEED REFACTORING
+              <span className="font-bold text-xl">Inventory Management</span>
+            ) : (
+              <span className="">
+                Profile of <span className="font-medium">{name}</span>
+              </span>
+            )}
           </div>
           {subdistributor !== undefined && (
             <div className="flex items-center space-x-1 text-sm text-slate-600">
@@ -128,7 +142,16 @@ const Header = () => {
             />
           )}
         </div>
-        <p className="font-medium">{data?.data.data.acronym || ""}</p>
+        <p className="font-medium">
+          {data?.data.data.acronym || ""}
+          {pathName.startsWith("/business")
+            ? data?.data.data.acronym
+            : pathName.startsWith("/main-agent")
+            ? company.main
+            : pathName.startsWith("/sub-agent")
+            ? company.sub
+            : company.retail}
+        </p>
       </div>
     </nav>
   );

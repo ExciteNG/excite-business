@@ -51,6 +51,7 @@ export const columns: ColumnDef<DistributorsTable>[] = [
     header: "",
   },
 ];
+import ChartOverview from "../shared/ChartOverview";
 
 export default function SuperAgentOverview() {
   const [distributors, setDistributors] = useState([]);
