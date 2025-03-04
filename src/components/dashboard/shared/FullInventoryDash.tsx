@@ -4,7 +4,8 @@ import { DashCard } from "@/components/dashboard/shared/Card";
 import { IoPersonOutline } from "react-icons/io5";
 import { IoLocationOutline } from "react-icons/io5";
 import { FiGift } from "react-icons/fi";
-import InventoryManagement from "@/components/dashboard/shared/InventoryManagement";
+import InventoryManagement from "@/components/dashboard/shared/InventoryTable";
+import { inventoryManagement } from '@/lib/dummyData';
 import { DisList } from '@/types/dashboard';
 
 
@@ -61,7 +62,7 @@ const FullInventoryDash = ({perDistributor, id, inventory, sales}:{perDistributo
               className={`${navKeys === 5 && 'hidden'} text-xs underline cursor-pointer`}
               onClick={() => pathNavLink(perDistributor)}
             >
-                          View {navKeys === 3 ? 'Retailers': 'Distributors'} working with {perDistributor?.name}
+              View {navKeys === 3 ? 'Retailers': 'Distributors'} working with {perDistributor?.name}
             </p>
           </div>
         </div>
@@ -73,7 +74,7 @@ const FullInventoryDash = ({perDistributor, id, inventory, sales}:{perDistributo
         </div>
 
         {/* INVENTORY MANAGEMENT TABLE */}
-        <InventoryManagement />
+        <InventoryManagement inventoryList={inventoryManagement} />
       </div>
     </>
   );

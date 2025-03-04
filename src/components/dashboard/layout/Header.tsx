@@ -1,11 +1,18 @@
 "use client"
 import React from 'react';
-import { useParams, useRouter } from 'next/navigation';
+import { useParams, useRouter, usePathname } from 'next/navigation';
 import { IoIosNotificationsOutline } from "react-icons/io";
 import { distributorList, subDistributorList, retailerList } from '@/lib/dummyData';
 import { RiHome6Line } from "react-icons/ri";
 import { MdKeyboardArrowRight } from "react-icons/md";
+import { env } from 'node:process';
 
+const company = {
+  super: 'SBC',
+  main: 'MainPartner',
+  sub: 'SubPartner',
+  retail:'Retailer'
+}
 
 const Header = () => {
   const {
@@ -16,8 +23,10 @@ const Header = () => {
     retailerid,
   } = useParams();
   const params = useParams();
+  const pathName = usePathname();
   const router = useRouter();
-console.log(params)
+  // console.log(pathName.split('/'))
+
   //filter distributor ID
   const { name } =
     distributorid !== undefined
@@ -36,7 +45,7 @@ console.log(params)
 
   return (
     <nav className='sticky top-0 h-20 bg-white z-40 border border-slate-50 shadow w-full flex items-center justify-between px-5'>
-      {distributorid === undefined ? (
+      {Object.keys(params).length === 0 && pathName.split("/").length === 2 ? (
         <div className=''>
           <h1 className='text-lg font-bold'>Welcome! {""}</h1>
           <p>Track, Manage your distributors</p>
@@ -45,15 +54,21 @@ console.log(params)
         <div className='flex items-center space-x-1'>
           <RiHome6Line
             className='text-slate-500 cursor-pointer'
-            title={`${subdistributor === undefined? 'Home':'Go Back'}`}
+            title={`${subdistributor === undefined ? "Home" : "Go Back"}`}
             size={20}
             onClick={() => router.back()}
           />
           <div className='flex items-center space-x-1 text-sm text-slate-600'>
             <MdKeyboardArrowRight />{" "}
-            <span className=''>
-              Profile of <span className='font-medium'>{name}</span>
-            </span>
+            {pathName.includes("inventory") ? (      //THIS CODE WILL NEED REFACTORING
+                <span className='font-bold text-xl'>
+                  Inventory Management
+              </span>
+            ) : (
+              <span className=''>
+                Profile of <span className='font-medium'>{name}</span>
+              </span>
+            )}
           </div>
           {subdistributor !== undefined && (
             <div className='flex items-center space-x-1 text-sm text-slate-600'>
@@ -108,7 +123,15 @@ console.log(params)
       <div className='flex items-center space-x-2'>
         <IoIosNotificationsOutline size={25} />
         <div className='p-5 w-fit rounded-full bg-slate-200 shadow border border-slate-300'></div>
-        <p>SBC</p>
+        <p className='font-medium'>
+          {pathName.startsWith("/super-agent")
+            ? company.super
+            : pathName.startsWith("/main-agent")
+            ? company.main
+            : pathName.startsWith("/sub-agent")
+            ? company.sub
+            : company.retail}
+        </p>
       </div>
     </nav>
   );

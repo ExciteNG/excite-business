@@ -30,11 +30,11 @@ export default function TotalSalesChart({
   const chartData = [{ agents: agents, remaining: totalAgents - agents }];
 
   return (
-    <Card className="flex flex-col border-none">
-      <CardContent className="flex flex-1 items-center pb-0">
+    <Card className=" border border-slate-100">
+      <CardContent className="flex justify-center items-center pb-0 px-0">
         <ChartContainer
           config={chartConfig}
-          className="mx-auto aspect-square w-full max-w-[250px]"
+          className="mx-auto h-[250px] w-full max-w-[250px]"
         >
           <RadialBarChart
             data={chartData}

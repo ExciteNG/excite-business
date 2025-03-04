@@ -1,4 +1,5 @@
 import { DisList } from "@/types/dashboard";
+import { InventoryProps } from "@/types/dashboard";
 
 const distributorList: DisList[] = [
   {
@@ -183,7 +184,7 @@ const subDistributorList: DisList[] = [
 ];
 
 
-const inventoryManagement = [
+const inventoryManagement:InventoryProps[] = [
   {
     batch: "20199",
     product: "Pepsi",
@@ -273,6 +274,29 @@ const inventoryManagement = [
     performance: "6%",
   },
 ];
+
+const miniInventoryList:InventoryProps[] = [
+  {
+    batch: "20204",
+    product: "Mountain Dew",
+    enterDate: "5 Mar 2022",
+    unitPrice: "710",
+    quantity: "190",
+    performance: "5%",
+  },
+  {
+    batch: "20205",
+    product: "Mirinda",
+    enterDate: "10 Mar 2022",
+    unitPrice: "680",
+    quantity: "210",
+    performance: "6%",
+  },
+];
+
+const product:string[] = [
+  'Pepsi', '7UP', 'Mirinda','Mountain', 'Teem', 'Lipton', 'Aquafina'
+]
 
 const retailerList: DisList[] = [
   {
@@ -367,4 +391,4 @@ const retailerList: DisList[] = [
 
 
 
-export { distributorList, inventoryManagement, subDistributorList, retailerList };
+export { distributorList, inventoryManagement, subDistributorList, retailerList, miniInventoryList, product };
