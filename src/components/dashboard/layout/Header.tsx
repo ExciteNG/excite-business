@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 import React from "react";
 import { useParams, useRouter } from "next/navigation";
@@ -9,8 +10,11 @@ import {
 } from "@/lib/dummyData";
 import { RiHome6Line } from "react-icons/ri";
 import { MdKeyboardArrowRight } from "react-icons/md";
+import { useReactQuery } from "@/services/apiHelper";
 
 const Header = () => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const { data, isPending } = useReactQuery<any>("profile", "/supagent");
   const {
     distributorid,
     subdistributor,
@@ -20,7 +24,7 @@ const Header = () => {
   } = useParams();
   const params = useParams();
   const router = useRouter();
-  console.log(params);
+  console.log("Header: ", params, data?.data.data.image.Location, isPending);
   //filter distributor ID
   const { name } =
     distributorid !== undefined
@@ -41,7 +45,12 @@ const Header = () => {
     <nav className="sticky top-0 h-20 bg-white z-40 border border-slate-50 shadow w-full flex items-center justify-between px-5">
       {distributorid === undefined ? (
         <div className="">
-          <h1 className="text-lg font-bold">Welcome! {""}</h1>
+          <h1 className="text-lg font-bold">
+            Welcome!{" "}
+            <span className="font-medium">
+              {data?.data.data.name || data?.data.data.fullname || ""}
+            </span>
+          </h1>
           <p>Track, Manage your distributors</p>
         </div>
       ) : (
@@ -110,11 +119,20 @@ const Header = () => {
 
       <div className="flex items-center space-x-2">
         <IoIosNotificationsOutline size={25} />
-        <div className="p-5 w-fit rounded-full bg-slate-200 shadow border border-slate-300"></div>
-        <p>SBC</p>
+        <div className="w-10 h-10 rounded-full bg-slate-200 border border-slate-200 shadow overflow-hidden">
+          {data?.data.data.image.Location && (
+            <img
+              src={data?.data.data.image.Location}
+              alt="profile-image"
+              className="w-full h-full object-center"
+            />
+          )}
+        </div>
+        <p className="font-medium">{data?.data.data.acronym || ""}</p>
       </div>
     </nav>
   );
 };
 
 export default Header;
+
