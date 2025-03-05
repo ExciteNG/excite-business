@@ -1,5 +1,5 @@
 "use client"
-import React, { useState } from "react";
+import React from "react";
 import { distributorList } from "@/lib/dummyData";
 import DistributorTable from "../shared/DistributorTable";
 import ChartOverview from "../shared/ChartOverview";

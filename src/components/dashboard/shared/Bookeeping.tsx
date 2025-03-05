@@ -5,7 +5,7 @@ import { IoIosAdd } from "react-icons/io";
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
+  // DialogDescription,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
@@ -27,6 +27,7 @@ const BookCard = ({title, cost}:{title:string, cost:number}) => {
 }
 const Bookeeping = () => {
   const [createTransaction, setCreateTransaction] = useState<boolean>(false);
+  console.log(createTransaction, setCreateTransaction)
 
   return (
     <div className='w-full'>
