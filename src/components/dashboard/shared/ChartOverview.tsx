@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { usePathname } from 'next/navigation';
+// import React, { useState } from "react";
+// import { usePathname } from "next/navigation";
 import {
   Select,
   SelectContent,
@@ -13,24 +13,34 @@ import YearlySalesChart from "../shared/YearlySalesChart";
 import TotalSalesChart from "../shared/TotalSalesChart";
 import { chartData } from "@/constants/dummy";
 
-const referral = {
-    superAgent: 'SBC/004',
-    mainAgent: 'SBC/004/010',
-    subAgent:' SBC/004/010/003'
-}
+// const referral = {
+//   superAgent: "SBC/004",
+//   mainAgent: "SBC/004/010",
+//   subAgent: " SBC/004/010/003",
+// };
 
-const ChartOverview = ({ }) => {
-    const pathName = usePathname();
-    const [location, setLocation] = useState<string>("Lagos");
+type Props = {
+  location: string;
+  setLocation: (value: string) => void;
+  refCode: string;
+  totalDistributors: number;
+};
 
+const ChartOverview = ({
+  refCode,
+  location,
+  setLocation,
+  totalDistributors,
+}: Props) => {
+  // const pathName = usePathname();
 
   return (
     <div>
-      <div className='w-full flex justify-between gap-4 items-center'>
-        <div className='flex gap-2'>
+      <div className="w-full flex justify-between gap-4 items-center">
+        <div className="flex gap-2">
           <Select value={location} onValueChange={setLocation}>
-            <SelectTrigger className='w-[180px]'>
-              <SelectValue placeholder='Theme' />
+            <SelectTrigger className="w-[180px]">
+              <SelectValue placeholder="Theme" />
             </SelectTrigger>
             <SelectContent>
               {Object.keys(statesAndLgas).map((state, index) => (
@@ -40,49 +50,54 @@ const ChartOverview = ({ }) => {
               ))}
             </SelectContent>
           </Select>
-          <button className='bg-[#A7CC48] py-2 px-6 rounded-md font-medium'>
+          <button className="bg-[#A7CC48] py-2 px-6 rounded-md font-medium">
             Search
           </button>
         </div>
         <div>
-          <p className='text-sm font-medium flex items-center gap-2'>
+          <p className="text-sm font-medium flex items-center gap-2">
             Referral Code:{" "}
-            <span className='font-semibold'>
-              {pathName.startsWith("/super-agent")
+            <span className="font-semibold">
+              {/* {pathName.startsWith("/super-agent")
                 ? referral.superAgent
                 : pathName.startsWith("/main-agent")
                 ? referral.mainAgent
-                : pathName.startsWith("/sub-agent") && referral.subAgent}
+                : pathName.startsWith("/sub-agent") && referral.subAgent} */}
+              {refCode}
             </span>{" "}
-            <Copy className='w-4 h-4' />{" "}
+            <Copy className="w-4 h-4" />{" "}
           </p>
         </div>
       </div>
 
       {/* chart section */}
-      <div className='w-full flex gap-4'>
-        <div className='w-2/3 border my-4 rounded-md p-4'>
-          <h2 className='font-semibold'>Distributors Sales</h2>
-          <p className='text-xs '>
+      <div className="w-full flex gap-4">
+        <div className="w-2/3 border my-4 rounded-md p-4">
+          <h2 className="font-semibold">Distributors Sales</h2>
+          <p className="text-xs ">
             Keep track of Distributors sale every month
           </p>
-          <div className='w-full'>
+          <div className="w-full">
             <YearlySalesChart chartData={chartData} />
           </div>
         </div>
-        <div className='w-1/3 border my-4 rounded-md p-4 space-y-4'>
+        <div className="w-1/3 border my-4 rounded-md p-4 space-y-4">
           <div>
-            <h2 className='font-semibold'>Distributors monitored</h2>
-            <p className='text-xs '>You’re using 67.5% of available spots.</p>
+            <h2 className="font-semibold">Distributors monitored</h2>
+            <p className="text-xs ">
+              You’re using {Math.round((totalDistributors / 1000) * 100)}% of
+              available spots.
+            </p>
           </div>
 
-          <div className='w-full'>
-            <TotalSalesChart agents={675} totalAgents={1000} />
+          <div className="w-full">
+            <TotalSalesChart agents={totalDistributors} totalAgents={1000} />
           </div>
         </div>
       </div>
     </div>
   );
-}
+};
 
-export default ChartOverview
+export default ChartOverview;
+

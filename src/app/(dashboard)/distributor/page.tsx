@@ -1,7 +1,13 @@
 import React from "react";
+import MainAgentOverview from "@/components/dashboard/main-agent/MainAgentOverview";
 
 const page = () => {
-  return <div>Distributor page</div>;
+  return (
+    <section className="">
+      <MainAgentOverview />
+    </section>
+  );
 };
 
 export default page;
+

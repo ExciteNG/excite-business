@@ -40,7 +40,7 @@ export default function SignInForm() {
             userType.toUpperCase() == "SUPERAGENT" ? "BUSINESS" : "DISTRIBUTOR";
           setAuthCookie(res.data.token, user);
 
-          if (!isOnboarded) {
+          if (userType.toUpperCase() == "SUPERAGENT" && !isOnboarded) {
             toast({
               variant: "caution",
               title: "Onboarding Required",
