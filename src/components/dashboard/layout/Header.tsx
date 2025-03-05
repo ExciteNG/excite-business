@@ -5,14 +5,14 @@ import { IoIosNotificationsOutline } from "react-icons/io";
 import { distributorList, subDistributorList, retailerList } from '@/lib/dummyData';
 import { RiHome6Line } from "react-icons/ri";
 import { MdKeyboardArrowRight } from "react-icons/md";
-import { env } from 'node:process';
+// import { env } from 'node:process';
 
 const company = {
   super: 'SBC',
   main: 'MainPartner',
   sub: 'SubPartner',
-  retail:'Retailer'
-}
+  retail: 'Retailer'
+};
 
 const Header = () => {
   const {
@@ -60,10 +60,10 @@ const Header = () => {
           />
           <div className='flex items-center space-x-1 text-sm text-slate-600'>
             <MdKeyboardArrowRight />{" "}
-            {pathName.includes("inventory") ? (      //THIS CODE WILL NEED REFACTORING
-                <span className='font-bold text-xl'>
-                  Inventory Management
-              </span>
+            {pathName.includes("inventory") ? (    //THIS CODE WILL NEED REFACTORING
+              <span className='font-bold text-xl'>Inventory Management</span>
+            ) : pathName.includes("book-keep") ? (
+              <span className='font-bold text-xl'>BizBook</span>
             ) : (
               <span className=''>
                 Profile of <span className='font-medium'>{name}</span>

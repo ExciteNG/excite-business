@@ -10,6 +10,9 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart";
+import { Button } from "@/components/ui/button";
+import { IoFlashOutline } from "react-icons/io5";
+
 
 const chartConfig = {
   agents: {
@@ -30,11 +33,11 @@ export default function TotalSalesChart({
   const chartData = [{ agents: agents, remaining: totalAgents - agents }];
 
   return (
-    <Card className=" border border-slate-100">
-      <CardContent className="flex justify-center items-center pb-0 px-0">
+    <Card className=' border-none'>
+      <CardContent className='relative flex justify-center items-center pb-0 px-0'>
         <ChartContainer
           config={chartConfig}
-          className="mx-auto h-[250px] w-full max-w-[250px]"
+          className='mx-auto h-[250px] w-full max-w-[250px]'
         >
           <RadialBarChart
             data={chartData}
@@ -51,18 +54,18 @@ export default function TotalSalesChart({
                 content={({ viewBox }) => {
                   if (viewBox && "cx" in viewBox && "cy" in viewBox) {
                     return (
-                      <text x={viewBox.cx} y={viewBox.cy} textAnchor="middle">
+                      <text x={viewBox.cx} y={viewBox.cy} textAnchor='middle'>
                         <tspan
                           x={viewBox.cx}
                           y={(viewBox.cy || 0) - 16}
-                          className="fill-foreground text-2xl font-bold"
+                          className='fill-foreground text-2xl font-bold'
                         >
                           {agents.toLocaleString()}
                         </tspan>
                         <tspan
                           x={viewBox.cx}
                           y={(viewBox.cy || 0) + 4}
-                          className="fill-muted-foreground"
+                          className='fill-muted-foreground'
                         >
                           {`of ${totalAgents.toLocaleString()} agents`}
                         </tspan>
@@ -73,21 +76,38 @@ export default function TotalSalesChart({
               />
             </PolarRadiusAxis>
             <RadialBar
-              dataKey="remaining"
-              fill="#EAECF0"
-              stackId="a"
+              dataKey='remaining'
+              fill='#EAECF0'
+              stackId='a'
               cornerRadius={5}
-              className="stroke-transparent stroke-2"
+              className='stroke-transparent stroke-2'
             />
             <RadialBar
-              dataKey="agents"
-              stackId="a"
+              dataKey='agents'
+              stackId='a'
               cornerRadius={5}
-              fill="#A1BD58"
-              className="stroke-transparent stroke-2"
+              fill='#A1BD58'
+              className='stroke-transparent stroke-2'
             />
           </RadialBarChart>
         </ChartContainer>
+        <div className='absolute bottom-0'>
+          <p className='font-medium text-sm'>
+            You have almost reached your limit
+          </p>
+          <p className='text-xs text-slate-500'>
+            You have used 67.5% of your available spots.
+          </p>
+          <p className='text-xs text-slate-500'>
+            Upgrade plan to monitor more distributors.
+          </p>
+          <div className='w-full flex justify-end mt-2'>
+            <Button className='flex items-center shadow' variant={"outline"}>
+              <IoFlashOutline />
+              <span>Upgrade Plan</span>
+            </Button>
+          </div>
+        </div>
       </CardContent>
     </Card>
   );

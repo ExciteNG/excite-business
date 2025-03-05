@@ -56,7 +56,7 @@ export const useCustomSideBar = ({ userType }: { userType: string }) => {
       {
         tab:"Book Keeping",
         icon:LuNotebookPen,
-        tabLink:'/book-keeping'
+        tabLink:'/main-agent/book-keep'
       },
       {
         tab: "Sign Out",
