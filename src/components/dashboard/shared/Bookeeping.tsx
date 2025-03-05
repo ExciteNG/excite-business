@@ -15,7 +15,7 @@ import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 
 
-const BookCard = ({title, cost}:{title:string, cost:number}) => {
+const BookCard = ({ title, cost }: { title: string, cost: number }) => {
   return (
     <div className='w-[30%] place-content-center h-32 border border-slate-100 shadow rounded-lg'>
       <div className='w-fit mx-auto text-center'>
@@ -24,7 +24,8 @@ const BookCard = ({title, cost}:{title:string, cost:number}) => {
       </div>
     </div>
   );
-}
+};
+
 const Bookeeping = () => {
   const [createTransaction, setCreateTransaction] = useState<boolean>(false);
   console.log(createTransaction, setCreateTransaction)
