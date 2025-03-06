@@ -16,7 +16,7 @@ import { useCustomSideBar } from '@/hooks/useCustomSideBar';
 const SideBar = () => {
   const pathName = usePathname();
   const router = useRouter();
-  const sideTabs = useCustomSideBar({ userType: 'MAINAGENT' });
+  const sideTabs = useCustomSideBar({ userType: 'SUPERAGENT' });
 
   return (
     <div className='fixed left-0 top-0 h-screen w-[17rem] bg-[#101828]'>

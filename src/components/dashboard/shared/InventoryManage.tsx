@@ -35,7 +35,7 @@ const InventoryManage = () => {
     <div className='w-full h-[80vh]'>
       {inventoryState.add ? (
         <div className='w-full h-full'>
-                  <div className='p-2 border border-slate-300 rounded-full shadow w-fit'
+                  <div className='p-2 cursor-pointer border border-slate-300 rounded-full shadow w-fit'
                       onClick={addProduct}
                   >
             <IoReturnUpBackSharp size={20}/>

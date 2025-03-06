@@ -1,10 +1,12 @@
 "use client"
 import React from 'react';
+import Image from 'next/image';
 import { useParams, useRouter, usePathname } from 'next/navigation';
 import { IoIosNotificationsOutline } from "react-icons/io";
 import { distributorList, subDistributorList, retailerList } from '@/lib/dummyData';
 import { RiHome6Line } from "react-icons/ri";
 import { MdKeyboardArrowRight } from "react-icons/md";
+import SbcLogo from "@/../../public/assets/img/SBClogo.png";
 // import { env } from 'node:process';
 
 const company = {
@@ -59,7 +61,7 @@ const Header = () => {
             onClick={() => router.back()}
           />
           <div className='flex items-center space-x-1 text-sm text-slate-600'>
-            <MdKeyboardArrowRight />{" "}
+            <MdKeyboardArrowRight />
             {pathName.includes("inventory") ? (    //THIS CODE WILL NEED REFACTORING
               <span className='font-bold text-xl'>Inventory Management</span>
             ) : pathName.includes("book-keep") ? (
@@ -122,7 +124,9 @@ const Header = () => {
 
       <div className='flex items-center space-x-2'>
         <IoIosNotificationsOutline size={25} />
-        <div className='p-5 w-fit rounded-full bg-slate-200 shadow border border-slate-300'></div>
+        <div className=' w-fit rounded-full bg-slate-200 shadow border border-slate-300'>
+          <Image src={SbcLogo} alt='Company_logo' className='w-10 h-10'/>
+        </div>
         <p className='font-medium'>
           {pathName.startsWith("/super-agent")
             ? company.super
