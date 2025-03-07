@@ -29,7 +29,7 @@ const InventoryTable = ({ inventoryList, thisProduct }: { inventoryList: Invento
       setFilterdProduct(sortInventory)
     }
     
-  },[thisProduct])
+  },[thisProduct, inventoryList])
 
    useMemo(() => {
     const amountSupply = filterdProduct.reduce((a, b) => a + (b.UnitP*b.QuantityS), 0);
@@ -42,7 +42,7 @@ const InventoryTable = ({ inventoryList, thisProduct }: { inventoryList: Invento
       amountRemaining:amountRemain,
     })
     // console.log(amountSupply)
-  },[inventoryList, filterdProduct])
+  },[filterdProduct])
   
     return (
       <div className=' border border-slate-100 shadow p-2'>

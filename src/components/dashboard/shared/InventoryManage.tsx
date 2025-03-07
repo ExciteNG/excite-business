@@ -116,7 +116,7 @@ const InventoryManage = () => {
           </div>
 
           {/* inventory table */}
-          <InventoryTable inventoryList={miniInventoryList} />
+          <InventoryTable inventoryList={miniInventoryList} thisProduct='ALL' />
         </div>
       )}
     </div>

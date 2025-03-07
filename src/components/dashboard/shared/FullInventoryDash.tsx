@@ -21,7 +21,7 @@ const FullInventoryDash = ({perDistributor, id, inventory, sales}:{perDistributo
   const { distributorid, subdistributor } = paramsObj;
 
   const [filterProd, setFilterProd] = useState('ALL');
-  console.log(filterProd)
+  // console.log(filterProd)
 
   const extractionBox = useMemo(() => {
     const products = inventoryManagement.map((box) => box.Product);
@@ -53,7 +53,7 @@ const FullInventoryDash = ({perDistributor, id, inventory, sales}:{perDistributo
       length: singlizeProducts.length,
       segregate: [...merged]
     }
-  }, [inventoryManagement]);
+  }, []);
 
 
 
@@ -115,7 +115,7 @@ const FullInventoryDash = ({perDistributor, id, inventory, sales}:{perDistributo
         {/* DASHBOARD CARDS */}
         <div className='flex items-center w-full space-x-5 px-1'>
           <div
-            className='cursor-pointer w-[30%]'
+            className='cursor-pointer w-[30%] hover:shadow-lg'
             onClick={() => setFilterProd("ALL")}
           >
             <DashCard width={100} title='Total Inventory' matrix={inventory} />

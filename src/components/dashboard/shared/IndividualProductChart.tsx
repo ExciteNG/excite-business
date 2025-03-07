@@ -87,9 +87,9 @@ export function IndividualProductChart({productMeasures, setThisProduct}:{produc
 
   const activeIndex = useMemo(
     () => desktopData.findIndex((item) => item.product === activeProduct),
-    [activeProduct]
+    [activeProduct, desktopData]
   );
-  const products = useMemo(() => desktopData.map((item) => item.product), []);
+  const products = useMemo(() => desktopData.map((item) => item.product), [desktopData]);
     //  console.log(products);
     
   return (
