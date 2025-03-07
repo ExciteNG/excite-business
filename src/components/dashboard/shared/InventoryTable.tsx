@@ -1,4 +1,4 @@
-import React, {useState, useMemo} from 'react';
+import React, {useState, useMemo, useEffect} from 'react';
 import {
   Table,
   TableBody,
@@ -12,17 +12,29 @@ import { IoIosArrowRoundDown } from "react-icons/io";
 // import { IoMdArrowDropup } from "react-icons/io";
 import { InventoryProps } from '@/types/dashboard';
 
-const InventoryTable = ({ inventoryList }: { inventoryList: InventoryProps[] }) => {
+const InventoryTable = ({ inventoryList, thisProduct }: { inventoryList: InventoryProps[], thisProduct:string }) => {
   const [totals, setTotals] = useState({
     amountSupplied: 0,
     amountSold: 0,
     amountRemaining: 0,
   });
 
+  const [filterdProduct, setFilterdProduct] = useState<InventoryProps[]>(inventoryList);
+  
+  useEffect(() => {
+    if (thisProduct === 'ALL') {
+      setFilterdProduct(inventoryList)
+    } else {
+      const sortInventory = inventoryList.filter(item => item.Product === thisProduct);
+      setFilterdProduct(sortInventory)
+    }
+    
+  },[thisProduct])
+
    useMemo(() => {
-    const amountSupply = inventoryList.reduce((a, b) => a + (b.UnitP*b.QuantityS), 0);
-    const amountSold = inventoryList.reduce((a, b) => a + (b.UnitP*b.quantityS), 0 );
-    const amountRemain = inventoryList.reduce((a, b) => a + (b.UnitP *(b.QuantityS-b.quantityS)), 0);
+    const amountSupply = filterdProduct.reduce((a, b) => a + (b.UnitP*b.QuantityS), 0);
+    const amountSold = filterdProduct.reduce((a, b) => a + (b.UnitP*b.quantityS), 0 );
+    const amountRemain = filterdProduct.reduce((a, b) => a + (b.UnitP *(b.QuantityS-b.quantityS)), 0);
     
     return setTotals({
       amountSupplied: amountSupply,
@@ -30,7 +42,7 @@ const InventoryTable = ({ inventoryList }: { inventoryList: InventoryProps[] }) 
       amountRemaining:amountRemain,
     })
     // console.log(amountSupply)
-  },[inventoryList])
+  },[inventoryList, filterdProduct])
   
     return (
       <div className=' border border-slate-100 shadow p-2'>
@@ -51,23 +63,23 @@ const InventoryTable = ({ inventoryList }: { inventoryList: InventoryProps[] }) 
                   Quantity Supplied
                 </TableHead>
                 <TableHead className='text-center'>Unit Price</TableHead>
-                <TableHead className='text-center font-bold text-slate-800 bg-green-600/50'>
+                <TableHead className='text-center font-bold text-slate-800 bg-green-600/30'>
                   Supplied Receivable
                 </TableHead>
                 <TableHead className='text-center'>Quantity Sold</TableHead>
-                <TableHead className='text-center font-bold text-slate-800 bg-green-400/50'>
+                <TableHead className='text-center font-bold text-slate-800 bg-green-400/25'>
                   Amount Sold
                 </TableHead>
                 <TableHead className='text-center'>
                   Quantity Remaining
                 </TableHead>
-                <TableHead className='text-center font-bold text-slate-800 bg-yellow-600/50'>
+                <TableHead className='text-center font-bold text-slate-800 bg-yellow-600/25'>
                   Amount Remaining
                 </TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
-              {inventoryList.map((list, key) => {
+              {filterdProduct.map((list, key) => {
                 return (
                   <TableRow key={key}>
                     <TableCell className='text-center cursor-pointer'>
@@ -84,19 +96,19 @@ const InventoryTable = ({ inventoryList }: { inventoryList: InventoryProps[] }) 
                     <TableCell className='font-semibold text-center'>
                       &#8358;{list.UnitP}
                     </TableCell>
-                    <TableCell className='font-semibold text-center bg-green-600/50 '>
+                    <TableCell className='font-semibold text-center bg-green-600/30 '>
                       &#8358;{list.QuantityS * list.UnitP}
                     </TableCell>
                     <TableCell className='text-center'>
                       {list.quantityS}
                     </TableCell>
-                    <TableCell className='font-semibold bg-green-400/50 text-center'>
+                    <TableCell className='font-semibold bg-green-400/20 text-center'>
                       &#8358;{list.quantityS * list.UnitP}
                     </TableCell>
                     <TableCell className='text-center'>
                       {list.QuantityS - list.quantityS}
                     </TableCell>
-                    <TableCell className='font-semibold bg-yellow-600/50 text-center'>
+                    <TableCell className='font-semibold bg-yellow-600/20 text-center'>
                       &#8358;{(list.QuantityS - list.quantityS) * list.UnitP}
                     </TableCell>
                   </TableRow>

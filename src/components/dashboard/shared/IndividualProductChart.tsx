@@ -34,6 +34,14 @@ type MeasurdProp = {
   }[]
 }
 
+// const desktopData = [
+  //   { product: "Pepsi", desktop: 186, fill: "var(--color-Pepsi)" },
+  //   { product: "Mirinda", desktop: 305, fill: "var(--color-Mirinda)" },
+  //   { product: "Mountain", desktop: 237, fill: "var(--color-Mountain)" },
+  //   { product: "Teem", desktop: 173, fill: "var(--color-Teem)" },
+  //   { product: "Aquafina", desktop: 209, fill: "var(--color-Aquafina)" },
+// ];
+  
 const chartConfig = {
   visitors: {
     label: "Visitors",
@@ -66,15 +74,8 @@ const chartConfig = {
   },
 } satisfies ChartConfig;
 
-export function IndividualProductChart({productMeasures}:{productMeasures:MeasurdProp}) {
+export function IndividualProductChart({productMeasures, setThisProduct}:{productMeasures:MeasurdProp, setThisProduct: (x:string)=>void}) {
   const id = "pie-interactive";
-  // const desktopData = [
-  //   { product: "Pepsi", desktop: 186, fill: "var(--color-Pepsi)" },
-  //   { product: "Mirinda", desktop: 305, fill: "var(--color-Mirinda)" },
-  //   { product: "Mountain", desktop: 237, fill: "var(--color-Mountain)" },
-  //   { product: "Teem", desktop: 173, fill: "var(--color-Teem)" },
-  //   { product: "Aquafina", desktop: 209, fill: "var(--color-Aquafina)" },
-  // ];
   const desktopData = productMeasures.segregate.map(measure => {
     return {
       product: measure.name,
@@ -95,7 +96,10 @@ export function IndividualProductChart({productMeasures}:{productMeasures:Measur
     <div data-chart={id} className=' w-fit flex flex-row-reverse'>
       <ChartStyle id={id} config={chartConfig} />
       <div className='flex-row items-start space-y-0 pb-0'>
-        <Select value={activeProduct} onValueChange={setActiveProduct}>
+        <Select value={activeProduct} onValueChange={(value) => {
+          setActiveProduct(value);
+          setThisProduct(value);
+        }}>
           <SelectTrigger
             className='ml-auto h-7 w-[130px] rounded-lg pl-2.5'
             aria-label='Select a value'
@@ -116,7 +120,9 @@ export function IndividualProductChart({productMeasures}:{productMeasures:Measur
                   value={key}
                   className='rounded-lg [&_span]:flex'
                 >
-                  <div className='flex items-center gap-2 text-xs'>
+                  <div
+                    className='flex items-center gap-2 text-xs'
+                  >
                     <span
                       className='flex h-3 w-3 shrink-0 rounded-sm'
                       style={{

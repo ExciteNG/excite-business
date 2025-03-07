@@ -1,4 +1,4 @@
-import React, { useMemo} from 'react';
+import React, {useMemo, useState} from 'react';
 import { useParams, useRouter } from "next/navigation";
 import { DashCard } from "@/components/dashboard/shared/Card";
 import { IoPersonOutline } from "react-icons/io5";
@@ -19,19 +19,21 @@ const FullInventoryDash = ({perDistributor, id, inventory, sales}:{perDistributo
   const navKeys = Object.keys(paramsObj).length;
     // console.log(paramsObj);
   const { distributorid, subdistributor } = paramsObj;
-  
+
+  const [filterProd, setFilterProd] = useState('ALL');
+  console.log(filterProd)
 
   const extractionBox = useMemo(() => {
     const products = inventoryManagement.map((box) => box.Product);
     const singlizeProducts = [...new Set(products)];
     const eachAndQuantity = inventoryManagement.map(box => { return { name: box.Product, eachAmount: box.quantityS } });
     
-    const merged:MerginProps[] = [];
-    (function() {
+    const merged: MerginProps[] = [];
+    (function () {
       const merging = eachAndQuantity.map((box) => {
         if (merged.some((obj: MerginProps) => obj.name === box.name)) {
           // console.log(box.name)
-          const key = merged.findIndex((key => JSON.stringify(key.name)===JSON.stringify(box.name)));
+          const key = merged.findIndex((key => JSON.stringify(key.name) === JSON.stringify(box.name)));
           if (key !== -1) {
             // console.log(key);
             const summation = merged[key]?.eachAmount + box.eachAmount;
@@ -46,14 +48,16 @@ const FullInventoryDash = ({perDistributor, id, inventory, sales}:{perDistributo
       });
       console.log(merging);
     })()
-     console.log(merged)
+    console.log(merged)
     return {
       length: singlizeProducts.length,
       segregate: [...merged]
     }
-},[inventoryManagement])
+  }, [inventoryManagement]);
 
 
+
+// DISTRIBUTION LINK CHAIN
   function pathNavLink(who: DisList) {
     const baseLink = '/super-agent/distribution';
         if (navKeys === 3) {
@@ -110,13 +114,24 @@ const FullInventoryDash = ({perDistributor, id, inventory, sales}:{perDistributo
 
         {/* DASHBOARD CARDS */}
         <div className='flex items-center w-full space-x-5 px-1'>
-          <DashCard width={30} title='Total Inventory' matrix={inventory} />
+          <div
+            className='cursor-pointer w-[30%]'
+            onClick={() => setFilterProd("ALL")}
+          >
+            <DashCard width={100} title='Total Inventory' matrix={inventory} />
+          </div>
           <DashCard width={30} title='Total Sales' matrix={sales} />
-          <IndividualProductChart productMeasures={extractionBox} />
+          <IndividualProductChart
+            productMeasures={extractionBox}
+            setThisProduct={setFilterProd}
+          />
         </div>
 
         {/* INVENTORY MANAGEMENT TABLE */}
-        <InventoryTable inventoryList={inventoryManagement} />
+        <InventoryTable
+          inventoryList={inventoryManagement}
+          thisProduct={filterProd}
+        />
       </div>
     </>
   );
