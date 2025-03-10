@@ -1,6 +1,10 @@
 "use client";
 import React from "react";
-import { useRouter, useParams, usePathname } from "next/navigation";
+import {
+  useRouter,
+  useParams,
+  //  usePathname
+} from "next/navigation";
 import {
   Table,
   TableBody,
@@ -21,7 +25,7 @@ import {
   PaginationEllipsis,
 } from "@/components/ui/pagination";
 import { DisList } from "@/types/dashboard";
-import { pathNavFn } from "@/constants/tableLinkFns";
+// import { pathNavFn } from "@/constants/tableLinkFns";
 
 const DistributorTable = ({
   distRank,
@@ -32,11 +36,16 @@ const DistributorTable = ({
   distributors: DisList[];
   matrix: number;
 }) => {
-  const { distributorid, subdistributor,  subdistributorid, retailer } =
+  const { distributorid, subdistributor, subdistributorid, retailer } =
     useParams();
-  const paramObject4Link = { distributorid, subdistributor, subdistributorid, retailer };
+  // const paramObject4Link = {
+  //   distributorid,
+  //   subdistributor,
+  //   subdistributorid,
+  //   retailer,
+  // };
   const router = useRouter();
-  const pathName = usePathname();
+  // const pathName = usePathname();
   // console.log(paramObject4Link);
 
   // NAVIGATING DISTRIBUTORS TO THERE SUB DISTRIBUTORS;
@@ -67,10 +76,13 @@ const DistributorTable = ({
   }
   return (
     <section>
-      <div className=' border border-slate-100 shadow p-2'>
-        <div className='p-2 border-b flex items-center space-x-4'>
-          <h3 className='font-semibold'>
-            {distRank}<span className={`${distRank === 'All' && 'hidden'}`}>&apos;</span>{" "}
+      <div className=" border border-slate-100 shadow p-2">
+        <div className="p-2 border-b flex items-center space-x-4">
+          <h3 className="font-semibold">
+            {distRank}
+            <span className={`${distRank === "All" && "hidden"}`}>
+              &apos;
+            </span>{" "}
             {retailer !== undefined ? "Retailers" : "Distributors"}
           </h3>
           <p className="text-[#7b9833] bg-[#f5fedc] text-sm w-10 text-center rounded-full shadow">
@@ -98,8 +110,9 @@ const DistributorTable = ({
                 return (
                   <TableRow key={key}>
                     <TableCell
-                      className='text-center cursor-pointer'
-                      onClick={() => pathNavFn(list, paramObject4Link, pathName, router)}
+                      className="text-center cursor-pointer"
+                      // onClick={() => pathNavFn(list, paramObject4Link, pathName, router)}
+                      onClick={() => pathNavFnNew(list)}
                       title={`View ${list.name}'s Profile`}
                     >
                       {list.name}
@@ -177,6 +190,3 @@ const DistributorTable = ({
 };
 
 export default DistributorTable;
-
-
-

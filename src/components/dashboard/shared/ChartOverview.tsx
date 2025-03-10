@@ -11,7 +11,9 @@ import { statesAndLgas } from "@/constants/statesAndLgas";
 import { Copy } from "lucide-react";
 import YearlySalesChart from "../shared/YearlySalesChart";
 import TotalSalesChart from "../shared/TotalSalesChart";
-import { chartData } from "@/constants/dummy";
+import { QueryType } from "../super-agent/SuperAgentOverview";
+import { useState } from "react";
+// import { chartData } from "@/constants/dummy";
 
 // const referral = {
 //   superAgent: "SBC/004",
@@ -20,29 +22,36 @@ import { chartData } from "@/constants/dummy";
 // };
 
 type Props = {
-  location: string;
-  setLocation: (value: string) => void;
+  query: QueryType;
+  handleQueryChange: (value: QueryType) => void;
   refCode: string;
+  isFetching: boolean;
   totalDistributors: number;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  salesData: any;
 };
 
 const ChartOverview = ({
   refCode,
-  location,
-  setLocation,
+  // query,
+  isFetching,
+  salesData,
+  handleQueryChange,
   totalDistributors,
 }: Props) => {
   // const pathName = usePathname();
+  const [state, setState] = useState<string>("");
 
   return (
     <div>
       <div className="w-full flex justify-between gap-4 items-center">
         <div className="flex gap-2">
-          <Select value={location} onValueChange={setLocation}>
+          <Select value={state} onValueChange={setState}>
             <SelectTrigger className="w-[180px]">
-              <SelectValue placeholder="Theme" />
+              <SelectValue placeholder="Select states" />
             </SelectTrigger>
             <SelectContent>
+              <SelectItem value={"all"}>All states</SelectItem>
               {Object.keys(statesAndLgas).map((state, index) => (
                 <SelectItem key={index} value={state}>
                   {state}
@@ -50,8 +59,20 @@ const ChartOverview = ({
               ))}
             </SelectContent>
           </Select>
-          <button className="bg-[#A7CC48] py-2 px-6 rounded-md font-medium">
-            Search
+          <button
+            onClick={() =>
+              handleQueryChange({
+                state: state,
+                month: null,
+                year: null,
+                day: null,
+                userType: null,
+                refCode: null,
+              })
+            }
+            className="bg-[#A7CC48] py-2 px-6 rounded-md font-medium"
+          >
+            {isFetching ? "Searching" : "Search"}
           </button>
         </div>
         <div>
@@ -78,7 +99,7 @@ const ChartOverview = ({
             Keep track of Distributors sale every month
           </p>
           <div className="w-full">
-            <YearlySalesChart chartData={chartData} />
+            <YearlySalesChart chartData={salesData} />
           </div>
         </div>
         <div className="w-1/3 border my-4 rounded-md p-4 space-y-4">
@@ -91,7 +112,10 @@ const ChartOverview = ({
           </div>
 
           <div className="w-full">
-            <TotalSalesChart agents={totalDistributors} totalAgents={1000} />
+            <TotalSalesChart
+              agents={totalDistributors || 0}
+              totalAgents={1000}
+            />
           </div>
         </div>
       </div>
@@ -100,4 +124,3 @@ const ChartOverview = ({
 };
 
 export default ChartOverview;
-
