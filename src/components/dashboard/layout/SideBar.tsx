@@ -20,7 +20,7 @@ const SideBar = () => {
 
   return (
     <div className='fixed left-0 top-0 h-screen w-[17rem] bg-[#101828]'>
-      <div className='w-full p-8' onClick={()=> router.push('/')}>
+      <div className='w-full p-8 ' onClick={()=> router.push('/')}>
         <Image src={exciteBusinessLogo} alt='exciteBusiness logo' className='w-28 mx-auto'/>
           </div>
           <section className='p-6 space-y-4'>

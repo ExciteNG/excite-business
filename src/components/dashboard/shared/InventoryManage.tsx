@@ -18,7 +18,7 @@ import { IoReturnUpBackSharp } from "react-icons/io5";
 const InventoryManage = () => {
     const [inventoryState, setInventoryState] = useState({
         add: false,
-        availableInventory: [1],
+        availableInventory: [],
     });
 
     function addProduct() {

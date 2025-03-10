@@ -10,6 +10,7 @@ import {
 } from "@/lib/dummyData";
 import { RiHome6Line } from "react-icons/ri";
 import { MdKeyboardArrowRight } from "react-icons/md";
+// import { env } from 'node:process';
 
 const company = {
 	super: "SBC",
