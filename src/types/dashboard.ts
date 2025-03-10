@@ -32,10 +32,14 @@ export interface TabLinkProps {
 };
 
 export interface InventoryProps {
-  batch: string;
-  product: string;
-  enterDate: string;
-  unitPrice: string;
-  quantity: string;
-  performance: string;
-  }
+  Product: string;
+  EntryD: string;
+  BatchID: string;
+  QuantityS: number;
+  UnitP: number;
+  // AmountS: number;
+  quantityS: number;
+  // AmountSold: number;
+  QuantityR: number;
+  // remainingA: number;
+}
