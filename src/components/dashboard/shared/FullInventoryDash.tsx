@@ -23,6 +23,7 @@ const FullInventoryDash = ({perDistributor, id, inventory, sales}:{perDistributo
   const [filterProd, setFilterProd] = useState('ALL');
   // console.log(filterProd)
 
+  // EXPENSIVE CALC.
   const extractionBox = useMemo(() => {
     const products = inventoryManagement.map((box) => box.Product);
     const singlizeProducts = [...new Set(products)];
@@ -42,13 +43,12 @@ const FullInventoryDash = ({perDistributor, id, inventory, sales}:{perDistributo
           }
         } else {
           merged.push(box);
-          // console.log(JSON.stringify(box))
         }
         // return box;
       });
       console.log(merging);
     })()
-    console.log(merged)
+    // console.log(merged)
     return {
       length: singlizeProducts.length,
       segregate: [...merged]
@@ -94,7 +94,7 @@ const FullInventoryDash = ({perDistributor, id, inventory, sales}:{perDistributo
                 </div>
                 <div className='flex items-center space-x-2'>
                   <FiGift className='text-yellow-700' />
-                  <p className='text-xs font-medium'>Give Incentive</p>
+                  <p className='text-xs font-medium'>Bronze</p>
                 </div>
               </div>
             </div>
@@ -115,7 +115,7 @@ const FullInventoryDash = ({perDistributor, id, inventory, sales}:{perDistributo
         {/* DASHBOARD CARDS */}
         <div className='flex items-center w-full space-x-5 px-1'>
           <div
-            className='cursor-pointer w-[30%] hover:shadow-lg'
+            className={`cursor-pointer w-[30%] ${filterProd !== 'ALL' && 'bg-slate-50'} hover:shadow-lg`}
             onClick={() => setFilterProd("ALL")}
           >
             <DashCard width={100} title='Total Inventory' matrix={inventory} />
