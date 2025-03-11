@@ -65,7 +65,7 @@ const InventoryTable = ({ inventoryList, thisProduct }: { inventoryList: Invento
             </div>
           </div>
           <div>
-            <Link href='/super-agent' className='text-xs font-bold underline'> View Sales performance report</Link>
+            <Link href='/sales-performance-report/1' className='text-xs font-bold underline'> View Sales performance report</Link>
           </div>
         </div>
         <div className='max-h-[60vh] overflow-auto relative'>

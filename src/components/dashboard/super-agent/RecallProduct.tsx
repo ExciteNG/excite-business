@@ -7,6 +7,8 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { recallDemo } from '@/lib/dummyData';
 import { RiRefreshLine } from "react-icons/ri";
+import { CiSearch } from "react-icons/ci";
+
 
 
 const RecallProduct = () => {
@@ -38,12 +40,19 @@ const RecallProduct = () => {
         </div>
       </div>
       <div className='w-full border border-slate-100 shadow rounded-lg'>
+        {/*          */}
         <div className='p-5'>
-          <Input
-            type='search'
-            placeholder='Search with Batch ID...'
-            className='w-[25%]'
-          />
+          <div className='flex items-center md_lg:w-full'>
+            <div className='border h-10 place-content-center pl-2 rounded-l-md border-r-0'>
+              <CiSearch size={22} className='text-slate-500' />
+            </div>
+
+            <Input
+              type='search'
+              placeholder='Search with batch ID...'
+              className='w-[25%] text-sm border-l-0 rounded-l-none pl-1 focus-visible:outline-none focus-visible:ring-0'
+            />
+          </div>
         </div>
         <div className='pb-5 w-full max-h-[60vh] overflow-auto'>
           <Table>

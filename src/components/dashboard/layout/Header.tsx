@@ -76,6 +76,10 @@ const Header = () => {
               </div>
             ) : pathName.includes("recall") ? (
               <div className='font-bold text-xl'>Recall Products</div>
+            ) : pathName.includes("performance") ? (
+              <div>
+                Performance of <span className='font-medium'>{name}</span>
+              </div>
             ) : (
               <span className=''>
                 Profile of <span className='font-medium'>{name}</span>
