@@ -189,9 +189,9 @@ export function IndividualProductChart({productMeasures, setThisProduct}:{produc
                         <tspan
                           x={viewBox.cx}
                           y={(viewBox.cy || 0) + 24}
-                          className='fill-muted-foreground'
+                          className='fill-muted-foreground italic font-semibold'
                         >
-                          {desktopData[activeIndex].product.toLocaleString()}
+                          Sold
                         </tspan>
                       </text>
                     );

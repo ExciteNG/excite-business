@@ -4,13 +4,15 @@ import { PiSignOutThin } from "react-icons/pi";
 import { GiNotebook } from "react-icons/gi";
 import { TabLinkProps } from "@/types/dashboard";
 import { LuNotebookPen } from "react-icons/lu";
-// import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
+import { FiGift } from "react-icons/fi";
+// import { TbTruckReturn } from "react-icons/tb";
+import { LuPackageSearch } from "react-icons/lu";
 
 
 
 export const useCustomSideBar = ({ userType }: { userType: string }) => {
     
-  const superAgent:TabLinkProps[] = [
+  const superAgent: TabLinkProps[] = [
     {
       tab: "Overview",
       icon: FaRegFileAlt,
@@ -26,6 +28,17 @@ export const useCustomSideBar = ({ userType }: { userType: string }) => {
         tabLink3: "/super-agent/agent-category/retailer",
       },
     },
+    {
+      tab: "Recall Product",
+      icon: LuPackageSearch,
+      tabLink: "/super-agent/recall-products",
+    },
+    {
+      tab: "Performance Reward",
+      icon: FiGift,
+      tabLink: "/super-agent/rewards",
+    },
+
     {
       tab: "Sign Out",
       icon: PiSignOutThin,

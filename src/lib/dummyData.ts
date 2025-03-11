@@ -1,4 +1,4 @@
-import { DisList } from "@/types/dashboard";
+import { DisList, RewardProps } from "@/types/dashboard";
 import { InventoryProps } from "@/types/dashboard";
 
 const distributorList: DisList[] = [
@@ -7,7 +7,7 @@ const distributorList: DisList[] = [
     lastModified: "22 Jan 2022",
     location: "Lagos",
     category: "Main distributor",
-    performance: "5%",
+    performance: "67%",
     id:'1'
   },
   {
@@ -15,7 +15,7 @@ const distributorList: DisList[] = [
     lastModified: "15 Feb 2023",
     location: "Benue",
     category: "Main distributor",
-    performance: "8%",
+    performance: "67%",
     id:'2'
   },
   {
@@ -23,7 +23,7 @@ const distributorList: DisList[] = [
     lastModified: "10 Mar 2021",
     location: "Enugu",
     category: "Main distributor",
-    performance: "12%",
+    performance: "72%",
     id:'3'
   },
   {
@@ -31,7 +31,7 @@ const distributorList: DisList[] = [
     lastModified: "05 Dec 2022",
     location: "Abia",
     category: "Main distributor",
-    performance: "7%",
+    performance: "67%",
     id:'4'
   },
   {
@@ -39,7 +39,7 @@ const distributorList: DisList[] = [
     lastModified: "18 Jul 2022",
     location: "Osun",
     category: "Main distributor",
-    performance: "10%",
+    performance: "70%",
     id:'5'
   },
   {
@@ -47,7 +47,7 @@ const distributorList: DisList[] = [
     lastModified: "25 Aug 2021",
     location: "Ondo",
     category: "Main distributor",
-    performance: "6%",
+    performance: "67%",
     id:'6'
   },
   {
@@ -55,7 +55,7 @@ const distributorList: DisList[] = [
     lastModified: "03 Feb 2023",
     location: "Delta",
     category: "Main distributor",
-    performance: "15%",
+    performance: "75%",
     id:'7'
   },
   {
@@ -63,7 +63,7 @@ const distributorList: DisList[] = [
     lastModified: "11 Nov 2022",
     location: "Benin",
     category: "Main distributor",
-    performance: "9%",
+    performance: "67%",
     id:'8'
   },
   {
@@ -71,7 +71,7 @@ const distributorList: DisList[] = [
     lastModified: "28 Jan 2022",
     location: "Lagos",
     category: "Main distributor",
-    performance: "14%",
+    performance: "74%",
     id:'9'
   },
   {
@@ -79,7 +79,7 @@ const distributorList: DisList[] = [
     lastModified: "06 Apr 2023",
     location: "Port-harcourt",
     category: "Main distributor",
-    performance: "11%",
+    performance: "71%",
     id:'10'
   },
   {
@@ -87,7 +87,7 @@ const distributorList: DisList[] = [
     lastModified: "20 Sep 2021",
     location: "Ibadan",
     category: "Main distributor",
-    performance: "4%",
+    performance: "67%",
     id:'11'
   },
 ];
@@ -98,7 +98,7 @@ const subDistributorList: DisList[] = [
     lastModified: "22 Jan 2022",
     location: "Kano",
     category: "Subdistributor",
-    performance: "6%",
+    performance: "76%",
     id: "1",
   },
   {
@@ -106,7 +106,7 @@ const subDistributorList: DisList[] = [
     lastModified: "12 Feb 2023",
     location: "Abuja",
     category: "Subdistributor",
-    performance: "8%",
+    performance: "78%",
     id: "2",
   },
   {
@@ -122,7 +122,7 @@ const subDistributorList: DisList[] = [
     lastModified: "05 Dec 2022",
     location: "Ogun",
     category: "Subdistributor",
-    performance: "7%",
+    performance: "77%",
     id: "4",
   },
   {
@@ -130,7 +130,7 @@ const subDistributorList: DisList[] = [
     lastModified: "28 Jun 2021",
     location: "Imo",
     category: "Subdistributor",
-    performance: "5%",
+    performance: "75%",
     id: "5",
   },
   {
@@ -146,7 +146,7 @@ const subDistributorList: DisList[] = [
     lastModified: "15 Aug 2022",
     location: "Anambra",
     category: "Subdistributor",
-    performance: "9%",
+    performance: "79%",
     id: "7",
   },
   {
@@ -162,7 +162,7 @@ const subDistributorList: DisList[] = [
     lastModified: "10 Sep 2021",
     location: "Kaduna",
     category: "Subdistributor",
-    performance: "8%",
+    performance: "78%",
     id: "9",
   },
   {
@@ -178,7 +178,7 @@ const subDistributorList: DisList[] = [
     lastModified: "22 Oct 2022",
     location: "Jos",
     category: "Subdistributor",
-    performance: "7%",
+    performance: "77%",
     id: "11",
   },
 ];
@@ -187,7 +187,7 @@ const subDistributorList: DisList[] = [
 const inventoryManagement: InventoryProps[] = [
   {
     Product: "Teem",
-    EntryD: "22 Jan 2022",
+    EntryD: "08 Mar 2025",
     BatchID: "20199",
     QuantityS: 1000,
     UnitP: 700,
@@ -199,7 +199,7 @@ const inventoryManagement: InventoryProps[] = [
   },
   {
     Product: "Pepsi",
-    EntryD: "22 Jan 2022",
+    EntryD: "08 Feb 2025",
     BatchID: "20199",
     QuantityS: 2000,
     UnitP: 700,
@@ -211,7 +211,7 @@ const inventoryManagement: InventoryProps[] = [
   },
   {
     Product: "Mountain",
-    EntryD: "25 Jan 2022",
+    EntryD: "08 Mar 2025",
     BatchID: "20200",
     QuantityS: 1180,
     UnitP: 750,
@@ -223,7 +223,7 @@ const inventoryManagement: InventoryProps[] = [
   },
   {
     Product: "Teem",
-    EntryD: "10 Feb 2022",
+    EntryD: "08 Feb 2025",
     BatchID: "20201",
     QuantityS: 2120,
     UnitP: 650,
@@ -235,7 +235,7 @@ const inventoryManagement: InventoryProps[] = [
   },
   {
     Product: "Mirinda",
-    EntryD: "15 Feb 2022",
+    EntryD: "08 Mar 2025",
     BatchID: "20202",
     QuantityS: 1150,
     UnitP: 670,
@@ -247,7 +247,7 @@ const inventoryManagement: InventoryProps[] = [
   },
   {
     Product: "Aquafina",
-    EntryD: "20 Feb 2022",
+    EntryD: "08 Feb 2025",
     BatchID: "20203",
     QuantityS: 2150,
     UnitP: 690,
@@ -259,7 +259,7 @@ const inventoryManagement: InventoryProps[] = [
   },
   {
     Product: "Mountain",
-    EntryD: "5 Mar 2022",
+    EntryD: "08 Mar 2025",
     BatchID: "20204",
     QuantityS: 1190,
     UnitP: 710,
@@ -271,7 +271,7 @@ const inventoryManagement: InventoryProps[] = [
   },
   {
     Product: "Mirinda",
-    EntryD: "10 Mar 2022",
+    EntryD: "08 Feb 2025",
     BatchID: "20205",
     QuantityS: 1210,
     UnitP: 680,
@@ -283,7 +283,7 @@ const inventoryManagement: InventoryProps[] = [
   },
   {
     Product: "Pepsi",
-    EntryD: "18 Mar 2022",
+    EntryD: "08 Mar 2025",
     BatchID: "20206",
     QuantityS: 2010,
     UnitP: 700,
@@ -295,7 +295,7 @@ const inventoryManagement: InventoryProps[] = [
   },
   {
     Product: "Mountain",
-    EntryD: "25 Mar 2022",
+    EntryD: "08 Feb 2025",
     BatchID: "20207",
     QuantityS: 1710,
     UnitP: 740,
@@ -307,7 +307,7 @@ const inventoryManagement: InventoryProps[] = [
   },
   {
     Product: "Aquafina",
-    EntryD: "30 Mar 2022",
+    EntryD: "08 Mar 2025",
     BatchID: "20208",
     QuantityS: 2130,
     UnitP: 660,
@@ -442,6 +442,338 @@ const retailerList: DisList[] = [
   },
 ];
 
+const rewardRecipients: RewardProps = {
+  platinum: [
+    {
+      name: "Ife OluwaYelu",
+      location: "Lagos",
+      rank: "Main distributor",
+      performance: `${Math.floor(Math.random() * 11) + 90}`,
+    },
+    {
+      name: "Tunde Adebayo",
+      location: "Abuja",
+      rank: "Main distributor",
+      performance: `${Math.floor(Math.random() * 11) + 90}`,
+    },
+    {
+      name: "Kemi Ajayi",
+      location: "Port Harcourt",
+      rank: "Main distributor",
+      performance: `${Math.floor(Math.random() * 11) + 90}`,
+    },
+    {
+      name: "Emeka Nwankwo",
+      location: "Enugu",
+      rank: "Main distributor",
+      performance: `${Math.floor(Math.random() * 11) + 90}`,
+    },
+    {
+      name: "Ngozi Okoro",
+      location: "Benin",
+      rank: "Main distributor",
+      performance: `${Math.floor(Math.random() * 11) + 90}`,
+    },
+    {
+      name: "Chinedu Okechukwu",
+      location: "Ibadan",
+      rank: "Main distributor",
+      performance: `${Math.floor(Math.random() * 11) + 90}`,
+    },
+    {
+      name: "Abdul Hassan",
+      location: "Kaduna",
+      rank: "Main distributor",
+      performance: `${Math.floor(Math.random() * 11) + 90}`,
+    },
+    {
+      name: "Micheal Thompson",
+      location: "Ilorin",
+      rank: "Main distributor",
+      performance: `${Math.floor(Math.random() * 11) + 90}`,
+    },
+    {
+      name: "Rahila Bello",
+      location: "Zaria",
+      rank: "Main distributor",
+      performance: `${Math.floor(Math.random() * 11) + 90}`,
+    },
+    {
+      name: "Daniel Olorunfemi",
+      location: "Oyo",
+      rank: "Main distributor",
+      performance: `${Math.floor(Math.random() * 11) + 90}`,
+    },
+  ],
+  diamond: [
+    {
+      name: "Tunde Adebayo",
+      location: "Abuja",
+      rank: "Main distributor",
+      performance: `${Math.floor(Math.random() * 11) + 80}`,
+    },
+    {
+      name: "Kemi Ajayi",
+      location: "Port Harcourt",
+      rank: "Main distributor",
+      performance: `${Math.floor(Math.random() * 11) + 80}`,
+    },
+    {
+      name: "Emeka Nwankwo",
+      location: "Enugu",
+      rank: "Main distributor",
+      performance: `${Math.floor(Math.random() * 11) + 80}`,
+    },
+    {
+      name: "Ngozi Okoro",
+      location: "Benin",
+      rank: "Main distributor",
+      performance: `${Math.floor(Math.random() * 11) + 80}`,
+    },
+    {
+      name: "Chinedu Okechukwu",
+      location: "Ibadan",
+      rank: "Main distributor",
+      performance: `${Math.floor(Math.random() * 11) + 80}`,
+    },
+    {
+      name: "Abdul Hassan",
+      location: "Kaduna",
+      rank: "Main distributor",
+      performance: `${Math.floor(Math.random() * 11) + 80}`,
+    },
+    {
+      name: "Micheal Thompson",
+      location: "Ilorin",
+      rank: "Main distributor",
+      performance: `${Math.floor(Math.random() * 11) + 80}`,
+    },
+    {
+      name: "Rahila Bello",
+      location: "Zaria",
+      rank: "Main distributor",
+      performance: `${Math.floor(Math.random() * 11) + 80}`,
+    },
+    {
+      name: "Daniel Olorunfemi",
+      location: "Oyo",
+      rank: "Main distributor",
+      performance: `${Math.floor(Math.random() * 11) + 80}`,
+    },
+  ],
+  gold: [
+    {
+      name: "Ife OluwaYelu",
+      location: "Lagos",
+      rank: "Main distributor",
+      performance: `${Math.floor(Math.random() * 11) + 70}`,
+    },
+    {
+      name: "Tunde Adebayo",
+      location: "Abuja",
+      rank: "Secondary distributor",
+      performance: `${Math.floor(Math.random() * 11) + 70}`,
+    },
+    {
+      name: "Kemi Ajayi",
+      location: "Port Harcourt",
+      rank: "Main distributor",
+      performance: `${Math.floor(Math.random() * 11) + 70}`,
+    },
+    {
+      name: "Emeka Nwankwo",
+      location: "Enugu",
+      rank: "Secondary distributor",
+      performance: `${Math.floor(Math.random() * 11) + 70}`,
+    },
+    {
+      name: "Ngozi Okoro",
+      location: "Benin",
+      rank: "Main distributor",
+      performance: `${Math.floor(Math.random() * 11) + 70}`,
+    },
+    {
+      name: "Chinedu Okechukwu",
+      location: "Ibadan",
+      rank: "Main distributor",
+      performance: `${Math.floor(Math.random() * 11) + 70}`,
+    },
+    {
+      name: "Abdul Hassan",
+      location: "Kaduna",
+      rank: "Secondary distributor",
+      performance: `${Math.floor(Math.random() * 11) + 70}`,
+    },
+    {
+      name: "Micheal Thompson",
+      location: "Ilorin",
+      rank: "Main distributor",
+      performance: `${Math.floor(Math.random() * 11) + 70}`,
+    },
+    {
+      name: "Rahila Bello",
+      location: "Zaria",
+      rank: "Secondary distributor",
+      performance: `${Math.floor(Math.random() * 11) + 70}`,
+    },
+    {
+      name: "Daniel Olorunfemi",
+      location: "Oyo",
+      rank: "Main distributor",
+      performance: `${Math.floor(Math.random() * 11) + 70}`,
+    },
+  ],
+  incentive: [
+    {
+      name: "Ngozi Okoro",
+      location: "Benin",
+      rank: "Main distributor",
+      performance: `${Math.floor(Math.random() * 11) + 50}`,
+    },
+    {
+      name: "Chinedu Okechukwu",
+      location: "Ibadan",
+      rank: "Main distributor",
+      performance: `${Math.floor(Math.random() * 11) + 50}`,
+    },
+    {
+      name: "Abdul Hassan",
+      location: "Kaduna",
+      rank: "Main distributor",
+      performance: `${Math.floor(Math.random() * 11) + 50}`,
+    },
+    {
+      name: "Micheal Thompson",
+      location: "Ilorin",
+      rank: "Main distributor",
+      performance: `${Math.floor(Math.random() * 11) + 50}`,
+    },
+    {
+      name: "Rahila Bello",
+      location: "Zaria",
+      rank: "Main distributor",
+      performance: `${Math.floor(Math.random() * 11) + 50}`,
+    },
+    {
+      name: "Daniel Olorunfemi",
+      location: "Oyo",
+      rank: "Main distributor",
+      performance: `${Math.floor(Math.random() * 11) + 50}`,
+    },
+  ],
+  intervention: [
+    {
+      name: "Kemi Ajayi",
+      location: "Port Harcourt",
+      rank: "Main distributor",
+      performance: `${Math.floor(Math.random() * 30) + 10}`,
+    },
+    {
+      name: "Emeka Nwankwo",
+      location: "Enugu",
+      rank: "Main distributor",
+      performance: `${Math.floor(Math.random() * 30) + 10}`,
+    },
+    {
+      name: "Ngozi Okoro",
+      location: "Benin",
+      rank: "Main distributor",
+      performance: `${Math.floor(Math.random() * 30) + 10}`,
+    },
+    {
+      name: "Chinedu Okechukwu",
+      location: "Ibadan",
+      rank: "Main distributor",
+      performance: `${Math.floor(Math.random() * 30) + 10}`,
+    },
+    {
+      name: "Abdul Hassan",
+      location: "Kaduna",
+      rank: "Main distributor",
+      performance: `${Math.floor(Math.random() * 30) + 10}`,
+    },
+    {
+      name: "Micheal Thompson",
+      location: "Ilorin",
+      rank: "Main distributor",
+      performance: `${Math.floor(Math.random() * 30) + 10}`,
+    },
+  ],
+};
+
+const recallDemo = [
+  {
+    product: "Pepsi",
+    batch: "20020",
+    quantity: "400",
+    price: "N550",
+    entry: "22 Jan, 2022",
+  },
+  {
+    product: "7UP",
+    batch: "20021",
+    quantity: "350",
+    price: "N600",
+    entry: "10 Feb, 2022",
+  },
+  {
+    product: "Teem",
+    batch: "20022",
+    quantity: "500",
+    price: "N450",
+    entry: "15 Mar, 2022",
+  },
+  {
+    product: "Lipton",
+    batch: "20023",
+    quantity: "200",
+    price: "N500",
+    entry: "5 Apr, 2022",
+  },
+  {
+    product: "Mirinda",
+    batch: "20024",
+    quantity: "600",
+    price: "N480",
+    entry: "20 May, 2022",
+  },
+  {
+    product: "Mountain",
+    batch: "20025",
+    quantity: "550",
+    price: "N650",
+    entry: "12 Jun, 2022",
+  },
+  {
+    product: "Pepsi",
+    batch: "20026",
+    quantity: "450",
+    price: "N520",
+    entry: "2 Jul, 2022",
+  },
+  {
+    product: "Aquafina",
+    batch: "20027",
+    quantity: "400",
+    price: "N580",
+    entry: "18 Aug, 2022",
+  },
+  {
+    product: "7UP",
+    batch: "20028",
+    quantity: "500",
+    price: "N460",
+    entry: "25 Sep, 2022",
+  },
+  {
+    product: "Mountain",
+    batch: "20029",
+    quantity: "350",
+    price: "N490",
+    entry: "7 Oct, 2022",
+  },
+];
 
 
-export { distributorList, inventoryManagement, subDistributorList, retailerList, miniInventoryList, product };
+
+export { distributorList, inventoryManagement, subDistributorList, retailerList, miniInventoryList, product, rewardRecipients, recallDemo };
