@@ -42,4 +42,37 @@ export interface InventoryProps {
   // AmountSold: number;
   QuantityR: number;
   // remainingA: number;
+};
+
+export interface RewardProps {
+  platinum: {
+    name: string;
+    location: string;
+    rank: string;
+    performance: string;
+  }[];
+  diamond: {
+    name: string;
+    location: string;
+    rank: string;
+    performance: string;
+  }[];
+  gold: {
+    name: string;
+    location: string;
+    rank: string;
+    performance: string;
+  }[];
+  incentive: {
+    name: string;
+    location: string;
+    rank: string;
+    performance: string;
+  }[];
+  intervention: {
+    name: string;
+    location: string;
+    rank: string;
+    performance: string;
+  }[];
 }

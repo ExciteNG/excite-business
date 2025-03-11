@@ -62,10 +62,20 @@ const Header = () => {
           />
           <div className='flex items-center space-x-1 text-sm text-slate-600'>
             <MdKeyboardArrowRight />
-            {pathName.includes("inventory") ? (    //THIS CODE WILL NEED REFACTORING
+            {pathName.includes("inventory") ? ( //THIS CODE WILL NEED REFACTORING
               <span className='font-bold text-xl'>Inventory Management</span>
             ) : pathName.includes("book-keep") ? (
               <span className='font-bold text-xl'>BizBook</span>
+            ) : pathName.includes("rewards") ? (
+              <div className='pl-1'>
+                <p className='text-xl font-bold'>Performance Rewards</p>
+                <span className='text-sm text-slate-600'>
+                  Rewards, incentives, and interventions tailored to performance
+                  tiers
+                </span>
+              </div>
+            ) : pathName.includes("recall") ? (
+              <div className='font-bold text-xl'>Recall Products</div>
             ) : (
               <span className=''>
                 Profile of <span className='font-medium'>{name}</span>
@@ -125,7 +135,7 @@ const Header = () => {
       <div className='flex items-center space-x-2'>
         <IoIosNotificationsOutline size={25} />
         <div className=' w-fit rounded-full bg-slate-200 shadow border border-slate-300'>
-          <Image src={SbcLogo} alt='Company_logo' className='w-10 h-10'/>
+          <Image src={SbcLogo} alt='Company_logo' className='w-10 h-10' />
         </div>
         <p className='font-medium'>
           {pathName.startsWith("/super-agent")

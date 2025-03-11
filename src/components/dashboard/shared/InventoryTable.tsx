@@ -1,4 +1,5 @@
-import React, {useState, useMemo, useEffect} from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
+import Link from 'next/link';
 import {
   Table,
   TableBody,
@@ -9,7 +10,6 @@ import {
   TableFooter,
 } from "@/components/ui/table";
 import { IoIosArrowRoundDown } from "react-icons/io";
-// import { IoMdArrowDropup } from "react-icons/io";
 import { InventoryProps } from '@/types/dashboard';
 
 const InventoryTable = ({ inventoryList, thisProduct }: { inventoryList: InventoryProps[], thisProduct:string }) => {
@@ -46,8 +46,27 @@ const InventoryTable = ({ inventoryList, thisProduct }: { inventoryList: Invento
   
     return (
       <div className=' border border-slate-100 shadow p-2'>
-        <div className='p-2 border-b'>
-          <h3 className='font-semibold'>Inventory Management</h3>
+        <div className='w-full p-3 border-b flex justify-between items-center'>
+          <div className='flex items-center space-x-4'>
+            <h3 className='font-semibold'>Inventory Management</h3>
+            <div className='flex items-center space-x-2'>
+              <div className='flex items-center space-x-0.5'>
+                <div className='p-1 rounded-full bg-green-400'></div>
+                <span className='text-xs'>Current Product</span>
+              </div>
+              <div className='flex items-center space-x-0.5'>
+                <div className='p-1 rounded-full bg-yellow-500'></div>
+                <span className='text-xs'>Brought Forward</span>
+              </div>
+              <div className='flex items-center space-x-0.5'>
+                <div className='p-1 rounded-full bg-red-500'></div>
+                <span className='text-xs'>Recalled Product</span>
+              </div>
+            </div>
+          </div>
+          <div>
+            <Link href='/super-agent' className='text-xs font-bold underline'> View Sales performance report</Link>
+          </div>
         </div>
         <div className='max-h-[60vh] overflow-auto relative'>
           <Table>
@@ -57,8 +76,8 @@ const InventoryTable = ({ inventoryList, thisProduct }: { inventoryList: Invento
                   <span>Product</span>
                   <IoIosArrowRoundDown />
                 </TableHead>
-                <TableHead className='text-center'>Entry Date</TableHead>
                 <TableHead className='text-center'>Batch ID</TableHead>
+                <TableHead className='text-center'>Entry Date</TableHead>
                 <TableHead className='text-center font-extrabold text-green-800'>
                   Quantity Supplied
                 </TableHead>
@@ -82,8 +101,15 @@ const InventoryTable = ({ inventoryList, thisProduct }: { inventoryList: Invento
               {filterdProduct.map((list, key) => {
                 return (
                   <TableRow key={key}>
-                    <TableCell className='text-center cursor-pointer'>
-                      {list.Product}
+                    <TableCell className='text-center cursor-pointer '>
+                      <div className='flex items-center space-x-1'>
+                        {key % 2 === 0 ? (
+                          <div className='p-1 rounded-full bg-green-400'></div>
+                        ) : (
+                          <div className='p-1 rounded-full bg-yellow-500'></div>
+                        )}{" "}
+                        <span>{list.Product}</span>
+                      </div>
                     </TableCell>
                     <TableCell className='text-center font-semibold'>
                       {list.BatchID}
