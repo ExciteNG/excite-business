@@ -30,7 +30,7 @@ export default function SuperAgentOverview() {
 
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	const { data, isPending, refetch, isFetching } = useReactQuery<any>(
-		"business-overview",
+		"business-overvie",
 		`/supagent/overview?state=${query.state}&month=${query.month || ""}&year=${
 			query.year || ""
 		}&day=${query.day || ""}&userType=${query.userType || ""}&refCode=${
@@ -53,14 +53,19 @@ export default function SuperAgentOverview() {
 					userType: string;
 					fullname: string;
 					createdAt: string;
+					performance: number;
 					location: { state: string };
-				}) => ({
-					id: distributor._id,
-					category: distributor.userType,
-					name: distributor.fullname,
-					lastModified: format(distributor.createdAt, "MMM do, YYY"),
-					location: distributor.location.state,
-				})
+				}) => {
+					console.log("Dist: ", distributor.performance);
+					return {
+						id: distributor._id,
+						category: distributor.userType,
+						name: distributor.fullname,
+						performance: distributor.performance,
+						lastModified: format(distributor.createdAt, "MMM do, YYY"),
+						location: distributor.location.state,
+					};
+				}
 			);
 		setDistributors(filteredDistributors || []);
 	}, [data]);
@@ -68,6 +73,8 @@ export default function SuperAgentOverview() {
 	if (isPending) {
 		return <div>Loading...</div>;
 	}
+
+	// console.log("Dist: ", distributors);
 
 	return (
 		<section className="w-full">
