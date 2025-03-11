@@ -22,6 +22,8 @@ import {
 } from "@/components/ui/pagination";
 import { DisList } from "@/types/dashboard";
 import { pathNavFn } from "@/constants/tableLinkFns";
+import { Input } from "@/components/ui/input";
+import { CiSearch } from "react-icons/ci";
 
 const DistributorTable = ({
 	distRank,
@@ -71,6 +73,17 @@ const DistributorTable = ({
 					<p className="text-[#7b9833] bg-[#f5fedc] text-sm w-10 text-center rounded-full shadow">
 						{matrix}
 					</p>
+					<div className="flex items-center md_lg:w-80">
+						<div className="border h-10 place-content-center pl-2 rounded-l-md border-r-0">
+							<CiSearch size={22} className="text-slate-500" />
+						</div>
+
+						<Input
+							type="search"
+							placeholder="Search for a distributor, by name..."
+							className="max-w-80 text-sm border-l-0 rounded-l-none pl-1 focus-visible:outline-none focus-visible:ring-0"
+						/>
+					</div>
 				</div>
 				<div className="h-[60vh] overflow-auto">
 					<Table>
