@@ -13,8 +13,8 @@ import {
 	TableHeader,
 	TableRow,
 } from "@/components/ui/table";
-import { IoIosArrowRoundDown } from "react-icons/io";
-import { IoMdArrowDropup, IoMdArrowDropdown } from "react-icons/io";
+import { IoIosArrowRoundDown, IoMdArrowDropdown } from "react-icons/io";
+import { IoMdArrowDropup } from "react-icons/io";
 import {
 	Pagination,
 	PaginationContent,
@@ -25,7 +25,9 @@ import {
 	PaginationEllipsis,
 } from "@/components/ui/pagination";
 import { DisList } from "@/types/dashboard";
-// import { pathNavFn } from "@/constants/tableLinkFns";
+// import { pathNavFn } from '@/constants/tableLinkFns';
+import { Input } from "@/components/ui/input";
+import { CiSearch } from "react-icons/ci";
 
 const DistributorTable = ({
 	distRank,
@@ -52,10 +54,20 @@ const DistributorTable = ({
 	// function pathNavFn(list: DisList) {
 	//   const baseLink = "/super-agent/distribution";
 	//   if (distributorid !== undefined && retailer === undefined) {
+	// NAVIGATING DISTRIBUTORS TO THERE SUB DISTRIBUTORS;
+	// function pathNavFn(list: DisList) {
+	//   const baseLink = "/super-agent/distribution";
+	//   if (distributorid !== undefined && retailer === undefined) {
 
 	//     return router.push(`${baseLink}/${distributorid}/${subdistributor}/${list.id}`);
 	//   } else if (retailer !== undefined) {
+	//     return router.push(`${baseLink}/${distributorid}/${subdistributor}/${list.id}`);
+	//   } else if (retailer !== undefined) {
 
+	//     return router.push(`${baseLink}/${distributorid}/${subdistributor}/${subdistributorid}/${retailer}/${list.id}`);
+	//   }
+	//  return router.push(`${baseLink}/${list.id}`);
+	// };
 	//     return router.push(`${baseLink}/${distributorid}/${subdistributor}/${subdistributorid}/${retailer}/${list.id}`);
 	//   }
 	//  return router.push(`${baseLink}/${list.id}`);
@@ -88,6 +100,17 @@ const DistributorTable = ({
 					<p className="text-[#7b9833] bg-[#f5fedc] text-sm w-10 text-center rounded-full shadow">
 						{matrix}
 					</p>
+					<div className="flex items-center md_lg:w-80">
+						<div className="border h-10 place-content-center pl-2 rounded-l-md border-r-0">
+							<CiSearch size={22} className="text-slate-500" />
+						</div>
+
+						<Input
+							type="search"
+							placeholder="Search for a distributor, by name..."
+							className="max-w-80 text-sm border-l-0 rounded-l-none pl-1 focus-visible:outline-none focus-visible:ring-0"
+						/>
+					</div>
 				</div>
 				<div className="h-[60vh] overflow-auto">
 					<Table>
@@ -137,15 +160,17 @@ const DistributorTable = ({
 											</span>
 										</TableCell>
 										<TableCell className="text-center">
-											{Number(list.performance) > 0 ? (
-												<p className="p-1 text-[#027A48] bg-[#ECFDF3] text-center rounded-full flex items-center justify-center">
-													<IoMdArrowDropup className="w-3 h-3" />
-													<span className="text-xs">{list.performance}%</span>
+											{Number(
+												list.performance.slice(0, list.performance.length - 1)
+											) > 50 ? (
+												<p className="text-[#027A48] bg-[#ECFDF3] text-center w-10 rounded-lg flex items-center">
+													<IoMdArrowDropup />
+													<span className="text-xs">{list.performance}</span>
 												</p>
 											) : (
-												<p className="p-1 text-red-500 bg-red-200 text-center rounded-full flex items-center justify-center">
-													<IoMdArrowDropdown className="w-3 h-3" />
-													<span className="text-xs">{list.performance}%</span>
+												<p className="text-red-500 bg-red-200 text-center w-10 rounded-lg flex items-center">
+													<IoMdArrowDropdown />
+													<span className="text-xs">{list.performance}</span>
 												</p>
 											)}
 										</TableCell>

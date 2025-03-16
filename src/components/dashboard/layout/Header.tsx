@@ -10,6 +10,7 @@ import {
 } from "@/lib/dummyData";
 import { RiHome6Line } from "react-icons/ri";
 import { MdKeyboardArrowRight } from "react-icons/md";
+import SbcLogo from "@/../../public/assets/img/SBClogo.png";
 // import { env } from 'node:process';
 
 const company = {
