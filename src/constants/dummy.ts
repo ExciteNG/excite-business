@@ -228,21 +228,3 @@ export const subDistributorList = [
 		id: "11",
 	},
 ];
-
-export const companyEmplyCountValues = [
-	"1-10",
-	"11-50",
-	"51-200",
-	"201-1000",
-	"1001+",
-];
-
-export const industry = [
-	"Agriculture",
-	"Construction",
-	"Financial services",
-	"Healthcare",
-	"Oil and gas",
-	"Consumer goods",
-	"Information and Communications Technology",
-];

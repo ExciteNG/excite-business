@@ -32,14 +32,14 @@ export interface TabLinkProps {
 	};
 }
 
-export interface InventoryProps {
-	batch: string;
-	product: string;
-	enterDate: string;
-	unitPrice: string;
-	quantity: string;
-	performance: string;
-}
+// export interface InventoryProps {
+// 	batch: string;
+// 	product: string;
+// 	enterDate: string;
+// 	unitPrice: string;
+// 	quantity: string;
+// 	performance: string;
+// }
 
 interface StoreInfo {
 	storeName: string;
@@ -197,4 +197,50 @@ export interface DistributorProduct {
 	quantity: number;
 	price: number;
 	distributor: string | IDistributor;
+}
+
+export interface InventoryProps {
+	Product: string;
+	EntryD: string;
+	BatchID: string;
+	QuantityS: number;
+	UnitP: number;
+	// AmountS: number;
+	quantityS: number;
+	// AmountSold: number;
+	QuantityR: number;
+	// remainingA: number;
+}
+
+export interface RewardProps {
+	platinum: {
+		name: string;
+		location: string;
+		rank: string;
+		performance: string;
+	}[];
+	diamond: {
+		name: string;
+		location: string;
+		rank: string;
+		performance: string;
+	}[];
+	gold: {
+		name: string;
+		location: string;
+		rank: string;
+		performance: string;
+	}[];
+	incentive: {
+		name: string;
+		location: string;
+		rank: string;
+		performance: string;
+	}[];
+	intervention: {
+		name: string;
+		location: string;
+		rank: string;
+		performance: string;
+	}[];
 }

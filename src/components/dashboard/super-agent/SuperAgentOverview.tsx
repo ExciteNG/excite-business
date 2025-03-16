@@ -18,8 +18,6 @@ export type QueryType = {
 	refCode: string | null;
 };
 export default function SuperAgentOverview() {
-	const [location, setLocation] = useState("all");
-	const [chart, setChart] = useState(chartData);
 	const [distributors, setDistributors] = useState([]);
 	const [query, setQuerey] = useState<QueryType>({
 		state: "",
@@ -71,33 +69,6 @@ export default function SuperAgentOverview() {
 			);
 		setDistributors(filteredDistributors || []);
 	}, [data]);
-
-	const filterByLocation = () => {
-		if (location !== "all") {
-			const filteredDistributor = distributorList.filter(
-				(dist) => dist.location === location
-			);
-
-			setDistributor(filteredDistributor);
-			let filteredSales;
-			if (filteredDistributor.length > 0) {
-				filteredSales = chartData.map((chart) => ({
-					...chart,
-					sales: chart.sales / [4, 8, 10][Math.floor(Math.random() * 3)],
-				}));
-				setChart(filteredSales);
-			} else {
-				filteredSales = chartData.map((chart) => ({
-					...chart,
-					sales: 0,
-				}));
-			}
-			setChart(filteredSales);
-		} else {
-			setDistributor(distributorList);
-			setChart(chartData);
-		}
-	};
 
 	if (isPending) {
 		return <div>Loading...</div>;
