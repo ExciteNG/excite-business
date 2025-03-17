@@ -1,6 +1,6 @@
 "use client";
-
 import React from "react";
+import { useRouter } from "next/navigation";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { SupAgentRegisterInputs } from "@/types/auth";
@@ -9,7 +9,7 @@ import FormInput from "./FormInput";
 import PasswordInput from "./PasswordInput";
 import PrimaryButton from "../ui/PrimaryButton";
 import { useToast } from "@/hooks/use-toast";
-import { useRouter } from "next/navigation";
+import { useReactMutation } from "@/services/apiHelper";
 
 export default function SupAgentForm() {
 	const {

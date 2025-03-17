@@ -3,7 +3,7 @@
 import React from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { SignInInputs} from "@/types/auth";
+import { SignInInputs } from "@/types/auth";
 import { SignInSchema } from "@/zodSchemas/schema";
 import Link from "next/link";
 import PrimaryButton from "../ui/PrimaryButton";
@@ -11,27 +11,71 @@ import { useRouter } from "next/navigation";
 import { useToast } from "@/hooks/use-toast";
 import FormInput from "./FormInput";
 import PasswordInput from "./PasswordInput";
+import { useReactMutation } from "@/services/apiHelper";
+import { setAuthCookie } from "@/lib/utils";
 
 export default function SignInForm() {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const { mutate, isPending } = useReactMutation<any, any>(
+    "/auth/business/login",
+  );
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<SignInInputs>({ resolver: zodResolver(SignInSchema) })
+  } = useForm<SignInInputs>({ resolver: zodResolver(SignInSchema) });
 
   const router = useRouter();
   const { toast } = useToast();
 
   const onSubmit: SubmitHandler<SignInInputs> = (data) => {
-    console.log(data)
+    console.log(data);
 
-    toast({
-      variant: "success",
-      title: "Success!",
-      description: "Sign in successfull!",
+    mutate(data, {
+      onSuccess: (res) => {
+        console.log(res.data);
+        if (res.data.success) {
+          const { isOnboarded, userType } = res.data.data;
+          const user =
+            userType.toUpperCase() == "SUPERAGENT" ? "BUSINESS" : "DISTRIBUTOR";
+          setAuthCookie(res.data.token, user);
+
+          if (!isOnboarded) {
+            toast({
+              variant: "caution",
+              title: "Onboarding Required",
+              description: "Please complete the onboarding process.",
+            });
+            router.push("/business/onboarding");
+            return;
+          }
+
+          toast({
+            variant: "success",
+            title: "Success!",
+            description: "Signin successfully!",
+          });
+
+          router.replace(`/${user.toLowerCase()}`);
+        } else {
+          toast({
+            variant: "destructive",
+            title: "Error!",
+            description: res.data.message || "Something went wrong!",
+          });
+        }
+      },
+      onError: (error) => {
+        toast({
+          variant: "destructive",
+          title: "Error!",
+          description:
+            error?.response?.data.message ||
+            error?.message ||
+            "Something went wrong!",
+        });
+      },
     });
-
-    router.push("/super-agent")
   };
 
   return (
@@ -54,7 +98,7 @@ export default function SignInForm() {
       <Link href="" className="text-[#A7CC48] text-sm">
         Forgot your password?
       </Link>
-      <PrimaryButton text="Sign In" className="my-4" />
+      <PrimaryButton text="Sign In" className="my-4" disabled={!!isPending} />
     </form>
   );
 }
