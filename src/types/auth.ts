@@ -27,5 +27,11 @@ export interface SupAgentOnboardingInputs {
 	acronym: string;
 	staffSize: string;
 	industry: string;
-	// products?: string[];
+	products: ProductInput[];
+}
+
+export interface ProductInput {
+	title: string;
+	category: string;
+	color: string;
 }

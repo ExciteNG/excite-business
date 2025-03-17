@@ -8,10 +8,13 @@ export interface ParamsLinkProp {
 	retailer: string | string[];
 }
 export interface DisList {
-	name: string;
-	lastModified: string;
-	location: string;
-	category: string;
+	fullname: string;
+	lastAssessed: string;
+	location: {
+		state: string;
+		lga: string;
+	};
+	userType: string;
 	performance: string;
 	id: string;
 }

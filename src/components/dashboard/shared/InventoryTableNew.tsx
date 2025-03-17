@@ -12,14 +12,41 @@ import { IoIosArrowRoundDown } from "react-icons/io";
 // import { IoMdArrowDropup } from "react-icons/io";
 
 import { Inventory } from "@/types/dashboard";
+import Link from "next/link";
 
 const InventoryTable = ({ inventory }: { inventory: Inventory[] }) => {
+	console.log("Invernt: ", inventory);
 	return (
 		<div className=" border border-slate-100 shadow p-2">
-			<div className="p-2 border-b">
-				<h3 className="font-semibold">Inventory Management</h3>
+			<div className="w-full p-3 border-b flex justify-between items-center">
+				<div className="flex items-center space-x-4">
+					<h3 className="font-semibold">Inventory Management</h3>
+					<div className="flex items-center space-x-2">
+						<div className="flex items-center space-x-0.5">
+							<div className="p-1 rounded-full bg-green-400"></div>
+							<span className="text-xs">Current Product</span>
+						</div>
+						<div className="flex items-center space-x-0.5">
+							<div className="p-1 rounded-full bg-yellow-500"></div>
+							<span className="text-xs">Brought Forward</span>
+						</div>
+						<div className="flex items-center space-x-0.5">
+							<div className="p-1 rounded-full bg-red-500"></div>
+							<span className="text-xs">Recalled Product</span>
+						</div>
+					</div>
+				</div>
+				<div>
+					<Link
+						href="/sales-performance-report/1"
+						className="text-xs font-bold underline"
+					>
+						{" "}
+						View Sales performance report
+					</Link>
+				</div>
 			</div>
-			<div className="h-[60vh] overflow-auto">
+			<div className="max-h-[60vh] overflow-auto relative">
 				<Table>
 					<TableHeader className="">
 						<TableRow className="text-nowrap">
@@ -27,15 +54,15 @@ const InventoryTable = ({ inventory }: { inventory: Inventory[] }) => {
 								<span>Product</span>
 								<IoIosArrowRoundDown />
 							</TableHead>
-							<TableHead className="text-center">Entry Date</TableHead>
 							<TableHead className="text-center">Batch ID</TableHead>
-							<TableHead className="text-center">
-								Quantity Brought forward
+							<TableHead className="text-center">Entry Date</TableHead>
+							<TableHead className="text-center font-extrabold text-green-800">
+								Old stock
 							</TableHead>
-							<TableHead className="text-center">Quantity supplied</TableHead>
-							<TableHead className="text-center">Quantity sold</TableHead>
-							<TableHead className="text-center">Quantity remaining</TableHead>
-							<TableHead className="text-center">Price</TableHead>
+							<TableHead className="text-center">Quantity Supplied</TableHead>
+							<TableHead className="text-center">Quantity Sold</TableHead>
+							<TableHead className="text-center">Quantity Remaining</TableHead>
+							<TableHead className="text-center">Unit Price</TableHead>
 						</TableRow>
 					</TableHeader>
 					<TableBody>
@@ -43,13 +70,21 @@ const InventoryTable = ({ inventory }: { inventory: Inventory[] }) => {
 							return (
 								<TableRow key={key} className="text-nowrap">
 									<TableCell className="text-center font-semibold">
-										{list.productName}
-									</TableCell>
-									<TableCell className="text-center">
-										{format(list.entryDate, "MMM do, YYY")}
+										<div className="flex justify-center items-center space-x-1">
+											{Date.now() < new Date(list.exitDate).getTime() &&
+											list.oldStockQuantity == 0 ? (
+												<div className="p-1 rounded-full bg-green-400" />
+											) : (
+												<div className="p-1 rounded-full bg-yellow-500" />
+											)}
+											<span>{list.productName}</span>
+										</div>
 									</TableCell>
 									<TableCell className="text-center cursor-pointer">
 										{list.currentBatch.number}
+									</TableCell>
+									<TableCell className="text-center">
+										{format(list.entryDate, "MMM do, yyy")}
 									</TableCell>
 									<TableCell className="text-center">
 										{list.oldStockQuantity}

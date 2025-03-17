@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import { format } from "date-fns";
 import {
 	useRouter,
 	useParams,
@@ -136,39 +137,39 @@ const DistributorTable = ({
 											className="text-center cursor-pointer"
 											// onClick={() => pathNavFn(list, paramObject4Link, pathName, router)}
 											onClick={() => pathNavFnNew(list)}
-											title={`View ${list.name}'s Profile`}
+											title={`View ${list.fullname}'s Profile`}
 										>
-											{list.name}
+											{list.fullname}
 										</TableCell>
 										<TableCell className="text-center">
-											{list.lastModified}
+											{format(new Date(list.lastAssessed), "MMM do, yyy")}
 										</TableCell>
 										<TableCell className="text-center">
-											{list.location}
+											{list.location.state}
 										</TableCell>
 										<TableCell className="text-center">
 											<span
 												className={`${
-													list.category === "MainDistributor"
+													list.userType === "MainDistributor"
 														? "text-[#027A48] bg-[#ECFDF3] text-center"
-														: list.category === "Subdistributor"
+														: list.userType === "Subdistributor"
 														? " text-[#026AA2] bg-[#F0F9FF] text-center"
 														: "text-[#363F72] bg-[#F8F9FC] text-center"
 												} px-2 py-1 rounded-full`}
 											>
-												&#10687; {list.category}
+												&#10687; {list.userType}
 											</span>
 										</TableCell>
 										<TableCell className="text-center">
 											{Number(
 												list.performance.slice(0, list.performance.length - 1)
 											) > 50 ? (
-												<p className="text-[#027A48] bg-[#ECFDF3] text-center w-10 rounded-lg flex items-center">
+												<p className="text-[#027A48] bg-[#ECFDF3] text-center w-fit px-2 py-1 rounded-full flex items-center justify-center">
 													<IoMdArrowDropup />
 													<span className="text-xs">{list.performance}</span>
 												</p>
 											) : (
-												<p className="text-red-500 bg-red-200 text-center w-10 rounded-lg flex items-center">
+												<p className="text-red-500 bg-red-200 text-center w-fit px-2 py-1 rounded-full flex items-center justify-center">
 													<IoMdArrowDropdown />
 													<span className="text-xs">{list.performance}</span>
 												</p>

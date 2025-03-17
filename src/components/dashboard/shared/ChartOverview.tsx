@@ -12,7 +12,7 @@ import { Copy } from "lucide-react";
 import YearlySalesChart from "../shared/YearlySalesChart";
 import TotalSalesChart from "../shared/TotalSalesChart";
 import { QueryType } from "../super-agent/SuperAgentOverview";
-import { useState } from "react";
+import { Dispatch, SetStateAction } from "react";
 // import { chartData } from "@/constants/dummy";
 
 // const referral = {
@@ -23,7 +23,8 @@ import { useState } from "react";
 
 type Props = {
 	query: QueryType;
-	handleQueryChange: (value: QueryType) => void;
+	setQuery: Dispatch<SetStateAction<QueryType>>;
+	handleQueryChange: () => void;
 	refCode: string;
 	isFetching: boolean;
 	totalDistributors: number;
@@ -33,20 +34,23 @@ type Props = {
 
 const ChartOverview = ({
 	refCode,
-	// query,
+	query,
+	setQuery,
 	isFetching,
 	salesData,
 	handleQueryChange,
 	totalDistributors,
 }: Props) => {
-	// const pathName = usePathname();
-	const [state, setState] = useState<string>("");
-
 	return (
 		<div>
 			<div className="w-full flex justify-between gap-4 items-center">
 				<div className="flex gap-2">
-					<Select value={state} onValueChange={setState}>
+					<Select
+						value={query.state}
+						onValueChange={(value) =>
+							setQuery((prev) => ({ ...prev, state: value }))
+						}
+					>
 						<SelectTrigger className="w-[180px]">
 							<SelectValue placeholder="Select states" />
 						</SelectTrigger>
@@ -60,16 +64,7 @@ const ChartOverview = ({
 						</SelectContent>
 					</Select>
 					<button
-						onClick={() =>
-							handleQueryChange({
-								state: state,
-								month: null,
-								year: null,
-								day: null,
-								userType: null,
-								refCode: null,
-							})
-						}
+						onClick={() => handleQueryChange()}
 						className="bg-[#A7CC48] py-2 px-6 rounded-md font-medium"
 					>
 						{isFetching ? "Searching" : "Search"}

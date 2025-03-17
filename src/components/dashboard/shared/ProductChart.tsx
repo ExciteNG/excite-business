@@ -73,7 +73,7 @@ const chartConfig = {
 	},
 } satisfies ChartConfig;
 
-export function IndividualProductChart({
+function ProductChart({
 	productMeasures,
 	setThisProduct,
 }: {
@@ -104,7 +104,7 @@ export function IndividualProductChart({
 		<div data-chart={id} className=" w-fit flex flex-row-reverse">
 			<ChartStyle id={id} config={chartConfig} />
 			<div className="flex-row items-start space-y-0 pb-0">
-				<Select
+				{/* <Select
 					value={activeProduct}
 					onValueChange={(value) => {
 						setActiveProduct(value);
@@ -144,7 +144,7 @@ export function IndividualProductChart({
 							);
 						})}
 					</SelectContent>
-				</Select>
+				</Select> */}
 			</div>
 			<div className="w-[195px] pb-0 rounded-full shadow-lg border border-slate-50">
 				<ChartContainer
@@ -214,3 +214,5 @@ export function IndividualProductChart({
 		</div>
 	);
 }
+
+export default ProductChart;

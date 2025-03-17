@@ -132,13 +132,19 @@ export const SupAgentOnboardingSchema = z.object({
 		required_error: "Staff size is required",
 		invalid_type_error: "Staff size must be a string",
 	}),
-	// products: z
-	//   .array(
-	//     z.string({
-	//       required_error: "Product is required",
-	//       invalid_type_error: "Product must be a string",
-	//     })
-	//   )
-	//   .optional(),
-	// .min(1, { message: "Must have at least 1 product" }),
+	products: z
+		.array(
+			z.object({
+				title: z
+					.string({ required_error: "Product title is required" })
+					.min(1, { message: "Product title is required" }),
+				category: z
+					.string({ required_error: "Product category is required" })
+					.min(1, { message: "Product category is required" }),
+				color: z
+					.string({ required_error: "Product color is required" })
+					.min(1, { message: "Product color is required" }),
+			})
+		)
+		.min(1, { message: "Must have at least 1 product" }),
 });

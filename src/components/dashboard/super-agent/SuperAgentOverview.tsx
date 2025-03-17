@@ -1,13 +1,10 @@
 "use client";
-import React, { useState, useEffect } from "react";
-import { format } from "date-fns";
-// import { distributorList } from "@/lib/dummyData";
-// import { distributorList as dummyData } from "@/constants/dummy";
-import DistributorTable from "../shared/DistributorTable";
-// import DataDistributorTable from "../shared/DataDistributorTable";
+import React, { useState } from "react";
+
 import { useReactQuery } from "@/services/apiHelper";
 
 import ChartOverview from "../shared/ChartOverview";
+import DistributorTable from "../shared/DistributorTable";
 
 export type QueryType = {
 	state: string;
@@ -18,9 +15,9 @@ export type QueryType = {
 	refCode: string | null;
 };
 export default function SuperAgentOverview() {
-	const [distributors, setDistributors] = useState([]);
-	const [query, setQuerey] = useState<QueryType>({
-		state: "",
+	// const [distributors, setDistributors] = useState([]);
+	const [query, setQuery] = useState<QueryType>({
+		state: "all",
 		month: null,
 		year: null,
 		day: null,
@@ -38,50 +35,22 @@ export default function SuperAgentOverview() {
 		}`
 	);
 
-	const handleQueryChange = (value: Partial<QueryType>) => {
-		setQuerey((prev) => ({ ...prev, ...value }));
+	const handleQueryChange = () => {
 		refetch();
 	};
-	console.log("Distributor: ", data, isPending);
-
-	useEffect(() => {
-		const filteredDistributors =
-			data?.data.data.distributors &&
-			data?.data.data.distributors.map(
-				(distributor: {
-					_id: string;
-					userType: string;
-					fullname: string;
-					createdAt: string;
-					performance: number;
-					location: { state: string };
-				}) => {
-					console.log("Dist: ", distributor.performance);
-					return {
-						id: distributor._id,
-						category: distributor.userType,
-						name: distributor.fullname,
-						performance: distributor.performance,
-						lastModified: format(distributor.createdAt, "MMM do, YYY"),
-						location: distributor.location.state,
-					};
-				}
-			);
-		setDistributors(filteredDistributors || []);
-	}, [data]);
+	// console.log("Distributor: ", data, isPending);
 
 	if (isPending) {
 		return <div>Loading...</div>;
 	}
 
-	// console.log("Dist: ", distributors);
-
 	return (
 		<section className="w-full">
 			<ChartOverview
 				query={query}
+				setQuery={setQuery}
 				handleQueryChange={handleQueryChange}
-				isFetching={isFetching}
+				isFetching={isFetching || isPending}
 				refCode={data?.data.data.user.refCode}
 				totalDistributors={data?.data.data.distributors.length}
 				salesData={data?.data.data.salesData}
@@ -90,8 +59,8 @@ export default function SuperAgentOverview() {
 			{/* Distributor table */}
 			{/* <DataDistributorTable columns={columns} data={dummyData} /> */}
 			<DistributorTable
-				distRank={"ALL"}
-				distributors={distributors || []}
+				distRank={query.state}
+				distributors={data?.data.data.distributors || []}
 				matrix={data?.data.data.distributors.length}
 			/>
 		</section>
