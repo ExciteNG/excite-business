@@ -3,7 +3,7 @@ import MainAgentOverview from "@/components/dashboard/main-agent/MainAgentOvervi
 
 const page = () => {
 	return (
-		<section className="">
+		<section className="p-5">
 			<MainAgentOverview />
 		</section>
 	);

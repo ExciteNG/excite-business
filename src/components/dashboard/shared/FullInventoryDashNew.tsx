@@ -1,36 +1,47 @@
 // import React, { useEffect, useState } from "react";
 "use client";
 import Link from "next/link";
-import { DashCard } from "@/components/dashboard/shared/Card";
+import { useEffect, useState } from "react";
+import { FiGift } from "react-icons/fi";
+import { useParams } from "next/navigation";
 import { IoPersonOutline } from "react-icons/io5";
 import { IoLocationOutline } from "react-icons/io5";
-import { FiGift } from "react-icons/fi";
+
+import { DashCard } from "@/components/dashboard/shared/Card";
 // import InventoryManagement from "@/components/dashboard/shared/InventoryTable";
 // import { inventoryManagement } from "@/lib/dummyData";
 // import { IDistributor } from "@/types/dashboard";
 import { useReactQuery } from "@/services/apiHelper";
-import { useParams } from "next/navigation";
 import InventoryTable from "./InventoryTableNew";
+import ProductChart from "./ProductChart";
 
 const FullInventoryDash = () => {
 	const { distributorId } = useParams();
-	// const [inventory, setInventory] = useState([]);
+	const [product, setProduct] = useState("all");
+	const [inventory, setInventory] = useState([]);
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	const { data, isPending, isError } = useReactQuery<any>(
 		"distributur-data",
 		`/supagent/${distributorId}`
 	);
-	console.log(data?.data.data);
+	console.log("Distri: ", data?.data.data);
 
-	// useEffect(() => {
-	// 	const filteredInventory =
-	// 		data?.data.data &&
-	// 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	// 		data?.data.data.inventory.map((inventory: any) => ({
-	// 			batchId: inventory.currentBatch.id,
-	// 		}));
-	// 	setInventory(filteredInventory || []);
-	// }, [data]);
+	useEffect(() => {
+		// const filteredInventory =
+		// 	data?.data.data &&
+		// 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+		// 	data?.data.data.inventory.map((inventory: any) => ({
+		// 		batchId: inventory.currentBatch.id,
+		// 	}));
+		setInventory(data?.data.data.inventory || []);
+	}, [data]);
+
+	const filterInventory = () => {
+		const filteredInventory = data?.data.data.inventory.filter(
+			(inventory) =>
+				product !== "all" && inventory.product.productName === product
+		);
+	};
 
 	if (isPending) {
 		return <div className="p-5">Loading...</div>;
@@ -88,20 +99,21 @@ const FullInventoryDash = () => {
 				{/* DASHBOARD CARDS */}
 				<div className="flex items-center w-full space-x-5 px-1">
 					<DashCard
-						width={40}
+						width={30}
 						title="Total Inventory"
 						matrix={data?.data.data.totalProducts}
 					/>
 					<DashCard
-						width={40}
+						width={30}
 						title="Total Sales"
 						matrix={data?.data.data.totalSales}
 					/>
+					{/* <IndividualProductChart /> */}
 				</div>
 
 				{/* INVENTORY MANAGEMENT TABLE */}
 				{/* <InventoryManagement inventoryList={inventoryManagement} /> */}
-				<InventoryTable inventory={data?.data.data.inventory} />
+				<InventoryTable inventory={inventory} />
 			</div>
 		</>
 	);
