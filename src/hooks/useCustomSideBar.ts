@@ -3,6 +3,7 @@ import { IoPeople } from "react-icons/io5";
 import { PiSignOutThin } from "react-icons/pi";
 import { GiNotebook } from "react-icons/gi";
 import { TabLinkProps } from "@/types/dashboard";
+import { LuNotebookPen } from "react-icons/lu";
 // import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 
 
@@ -50,7 +51,12 @@ export const useCustomSideBar = ({ userType }: { userType: string }) => {
       {
         tab: "Inventory Management",
         icon: GiNotebook,
-        tabLink: "/inventory-management",
+        tabLink: "/main-agent/inventory",
+      },
+      {
+        tab:"Book Keeping",
+        icon:LuNotebookPen,
+        tabLink:'/main-agent/book-keep'
       },
       {
         tab: "Sign Out",
@@ -77,7 +83,12 @@ export const useCustomSideBar = ({ userType }: { userType: string }) => {
       {
         tab: "Inventory Management",
         icon: GiNotebook,
-        tabLink: "/inventory-management",
+        tabLink: "/sub-agent/inventory",
+      },
+      {
+        tab:"Book Keeping",
+        icon:LuNotebookPen,
+        tabLink:'/book-keeping'
       },
       {
         tab: "Sign Out",
@@ -104,7 +115,12 @@ export const useCustomSideBar = ({ userType }: { userType: string }) => {
       {
         tab: "Inventory Management",
         icon: GiNotebook,
-        tabLink: "/inventory-management",
+        tabLink: "/retailer/inventory",
+      },
+      {
+        tab:"Book Keeping",
+        icon:LuNotebookPen,
+        tabLink:'/book-keeping'
       },
       {
         tab: "Sign Out",

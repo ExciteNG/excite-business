@@ -3,7 +3,7 @@ import React from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
-import exciteBusinessLogo from "@/../public/assets/img/image 29.png";
+import exciteBusinessLogo from "@/../public/assets/img/exciteBusinessLogo.png";
 import {
   Accordion,
   AccordionContent,
@@ -16,12 +16,12 @@ import { useCustomSideBar } from '@/hooks/useCustomSideBar';
 const SideBar = () => {
   const pathName = usePathname();
   const router = useRouter();
-  const sideTabs = useCustomSideBar({ userType: 'MAINAGENT' });
+  const sideTabs = useCustomSideBar({ userType: 'SUPERAGENT' });
 
   return (
     <div className='fixed left-0 top-0 h-screen w-[17rem] bg-[#101828]'>
-      <div className='w-full p-8'>
-        <Image src={exciteBusinessLogo} alt='exciteBusiness logo' className='w-20 mx-auto'/>
+      <div className='w-full p-8 ' onClick={()=> router.push('/')}>
+        <Image src={exciteBusinessLogo} alt='exciteBusiness logo' className='w-28 mx-auto'/>
           </div>
           <section className='p-6 space-y-4'>
         {sideTabs?.map((tab, index) => {

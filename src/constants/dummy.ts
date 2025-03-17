@@ -1,21 +1,21 @@
 export type ChartDataType = {
-  month: string;
+  period: string;
   sales: number;
 }[];
 
 export const chartData = [
-  { month: "January", sales: 222 },
-  { month: "February", sales: 97 },
-  { month: "March", sales: 167 },
-  { month: "April", sales: 242 },
-  { month: "May", sales: 373 },
-  { month: "June", sales: 301 },
-  { month: "July", sales: 245 },
-  { month: "August", sales: 409 },
-  { month: "September", sales: 59 },
-  { month: "October", sales: 261 },
-  { month: "November", sales: 327 },
-  { month: "December", sales: 292 },
+  { period: "January", sales: 222 },
+  { period: "February", sales: 97 },
+  { period: "March", sales: 167 },
+  { period: "April", sales: 242 },
+  { period: "May", sales: 373 },
+  { period: "June", sales: 301 },
+  { period: "July", sales: 245 },
+  { period: "August", sales: 409 },
+  { period: "September", sales: 59 },
+  { period: "October", sales: 261 },
+  { period: "November", sales: 327 },
+  { period: "December", sales: 292 },
 ];
 export const companyEmplyCountValues = [
   "1-10",
