@@ -35,7 +35,7 @@ export default function SupAgentOnboardingForm() {
 	const router = useRouter();
 
 	const onSubmit: SubmitHandler<SupAgentOnboardingInputs> = (data) => {
-		// console.log(data);
+		console.log(data);
 		toast({
 			variant: "success",
 			title: "Success!",
