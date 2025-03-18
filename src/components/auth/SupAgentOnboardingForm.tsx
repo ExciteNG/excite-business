@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { SupAgentOnboardingInputs } from "@/types/auth";
@@ -20,6 +20,7 @@ import Image from "next/image";
 
 export default function SupAgentOnboardingForm() {
 	const [image, setImage] = useState<string | null>(null);
+	const fileInputRef = useRef<HTMLInputElement | null>(null);
 
 	const {
 		control,
@@ -34,64 +35,66 @@ export default function SupAgentOnboardingForm() {
 	const router = useRouter();
 
 	const onSubmit: SubmitHandler<SupAgentOnboardingInputs> = (data) => {
-		console.log(data);
-		toast({ title: "Onboarding successfull" });
+		// console.log(data);
+		toast({
+			variant: "success",
+			title: "Success!",
+			description: "Onboarding successfull",
+		});
 
 		router.push("/super-agent");
 	};
 
 	return (
 		<form onSubmit={handleSubmit(onSubmit)} className="w-full my-4">
-			<Controller
-				name="image"
-				control={control}
-				render={({ field: { ref, name, onBlur, onChange } }) => (
-					// <input
-					// 	type="file"
-					// 	ref={ref}
-					// 	onBlur={onBlur}
-					// 	name={name}
-					// 	onChange={(e) => {
-					// 		const file = e.target.files?.[0];
-					// 		onChange(file ? file : null);
-					// 		setImage(file ? URL.createObjectURL(file) : null);
-					// 	}}
-					// />
-					<div>
-						<p>Upload Identity</p>
-						<div className="w-full h-28 p-5 flex flex-col items-center justify-center rounded-lg border">
-							<Image
-								src="/assets/img/upload.png"
-								alt="upload"
-								width={40}
-								height={40}
-							/>
+			<div>
+				<p>Upload Identity</p>
+				{image ? (
+					// eslint-disable-next-line @next/next/no-img-element
+					<img
+						src={image}
+						alt="company-image"
+						className="w-28 h-28 object-cover object-center"
+					/>
+				) : (
+					<Controller
+						name="image"
+						control={control}
+						render={({ field: { ref, name, onBlur, onChange } }) => (
+							<div
+								onClick={() => fileInputRef.current?.click()}
+								className="w-full h-28 p-5 flex flex-col items-center justify-center rounded-lg border"
+							>
+								<Image
+									src="/assets/img/upload.png"
+									alt="upload"
+									width={40}
+									height={40}
+								/>
 
-							<p className="text-[#A7CC48] font-medium">Click here to upload</p>
-							<input
-								type="file"
-								hidden
-								ref={ref}
-								onBlur={onBlur}
-								name={name}
-								onChange={(e) => {
-									const file = e.target.files?.[0];
-									onChange(file ? file : null);
-									setImage(file ? URL.createObjectURL(file) : null);
-								}}
-							/>
-						</div>
-					</div>
+								<p className="text-[#A7CC48] font-medium">
+									Click here to upload
+								</p>
+								<input
+									type="file"
+									hidden
+									ref={(e) => {
+										ref(e);
+										fileInputRef.current = e;
+									}}
+									onBlur={onBlur}
+									name={name}
+									onChange={(e) => {
+										const file = e.target.files?.[0];
+										onChange(file ? file : null);
+										setImage(file ? URL.createObjectURL(file) : null);
+									}}
+								/>
+							</div>
+						)}
+					/>
 				)}
-			/>
-			{image && (
-				// eslint-disable-next-line @next/next/no-img-element
-				<img
-					src={image}
-					alt="company-image"
-					className="w-60 h-60 object-cover object-center"
-				/>
-			)}
+			</div>
 			<FormInput
 				type="text"
 				label="Acronym"

@@ -32,7 +32,7 @@ export default function SupAgentForm() {
 			description: "Account created successfully!",
 		});
 
-		router.push("/super-agent");
+		router.push("/super-agent/onboarding");
 	};
 
 	return (
