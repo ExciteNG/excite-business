@@ -1,6 +1,6 @@
 "use client";
+
 import React from "react";
-import { useRouter } from "next/navigation";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { SupAgentRegisterInputs } from "@/types/auth";
@@ -9,7 +9,7 @@ import FormInput from "./FormInput";
 import PasswordInput from "./PasswordInput";
 import PrimaryButton from "../ui/PrimaryButton";
 import { useToast } from "@/hooks/use-toast";
-import { useReactMutation } from "@/services/apiHelper";
+import { useRouter } from "next/navigation";
 
 export default function SupAgentForm() {
 	const {
@@ -32,7 +32,7 @@ export default function SupAgentForm() {
 			description: "Account created successfully!",
 		});
 
-		router.push("/super-agent");
+		router.push("/super-agent/onboarding");
 	};
 
 	return (

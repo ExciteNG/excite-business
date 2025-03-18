@@ -11,94 +11,58 @@ import { useRouter } from "next/navigation";
 import { useToast } from "@/hooks/use-toast";
 import FormInput from "./FormInput";
 import PasswordInput from "./PasswordInput";
-import { useReactMutation } from "@/services/apiHelper";
 import { setAuthCookie } from "@/lib/utils";
 
 export default function SignInForm() {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const { mutate, isPending } = useReactMutation<any, any>(
-    "/auth/business/login",
-  );
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<SignInInputs>({ resolver: zodResolver(SignInSchema) });
+	const {
+		register,
+		handleSubmit,
+		formState: { errors },
+	} = useForm<SignInInputs>({ resolver: zodResolver(SignInSchema) });
 
-  const router = useRouter();
-  const { toast } = useToast();
+	const router = useRouter();
+	const { toast } = useToast();
 
-  const onSubmit: SubmitHandler<SignInInputs> = (data) => {
-    console.log(data);
+	const onSubmit: SubmitHandler<SignInInputs> = (data) => {
+		console.log(data);
 
-    mutate(data, {
-      onSuccess: (res) => {
-        console.log(res.data);
-        if (res.data.success) {
-          const { isOnboarded, userType } = res.data.data;
-          const user =
-            userType.toUpperCase() == "SUPERAGENT" ? "BUSINESS" : "DISTRIBUTOR";
-          setAuthCookie(res.data.token, user);
+		toast({
+			variant: "success",
+			title: "Success!",
+			description: "Sign in successfull!",
+		});
 
-          if (!isOnboarded) {
-            toast({
-              variant: "caution",
-              title: "Onboarding Required",
-              description: "Please complete the onboarding process.",
-            });
-            router.push("/business/onboarding");
-            return;
-          }
+		const user = data.email == "admin@sevenup.org" ? "BUSINESS" : "DISTRIBUTOR";
+		setAuthCookie("sample-token", user);
 
-          toast({
-            variant: "success",
-            title: "Success!",
-            description: "Signin successfully!",
-          });
+		if (user === "BUSINESS") {
+			router.push("/super-agent");
+		} else {
+			router.push("/main-agent");
+		}
+	};
 
-          router.replace(`/${user.toLowerCase()}`);
-        } else {
-          toast({
-            variant: "destructive",
-            title: "Error!",
-            description: res.data.message || "Something went wrong!",
-          });
-        }
-      },
-      onError: (error) => {
-        toast({
-          variant: "destructive",
-          title: "Error!",
-          description:
-            error?.response?.data.message ||
-            error?.message ||
-            "Something went wrong!",
-        });
-      },
-    });
-  };
-
-  return (
-    <form onSubmit={handleSubmit(onSubmit)} className="w-full my-4">
-      <FormInput
-        type="email"
-        label="Email"
-        id="email"
-        placeholder="Enter your email"
-        register={register}
-        error={errors.email?.message}
-      />
-      <PasswordInput
-        label="Password"
-        id="password"
-        placeholder="Enter password"
-        register={register}
-        error={errors.password?.message}
-      />
-      <Link href="" className="text-[#A7CC48] text-sm">
-        Forgot your password?
-      </Link>
-      <PrimaryButton text="Sign In" className="my-4" disabled={!!isPending} />
-    </form>
-  );
+	return (
+		<form onSubmit={handleSubmit(onSubmit)} className="w-full my-4">
+			<FormInput
+				type="email"
+				label="Email"
+				id="email"
+				placeholder="Enter your email"
+				register={register}
+				error={errors.email?.message}
+			/>
+			<PasswordInput
+				label="Password"
+				id="password"
+				placeholder="Enter password"
+				register={register}
+				error={errors.password?.message}
+			/>
+			<Link href="" className="text-[#A7CC48] text-sm">
+				Forgot your password?
+			</Link>
+			<PrimaryButton text="Sign In" className="my-4" />
+		</form>
+	);
 }
