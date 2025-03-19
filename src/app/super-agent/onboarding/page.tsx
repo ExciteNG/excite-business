@@ -9,7 +9,7 @@ export default function page() {
 			<section className="flex-1">
 				<div className="w-full h-full relative flex justify-center overflow-y-scroll no-scrollbar">
 					<div className="w-[90%] py-6 px-4">
-						<div className="relative w-24 h-16 mb-10">
+						<div className="relative w-24 h-12 mb-10">
 							<Image
 								src="/excite-logo-dark.png"
 								alt="excite-logo"

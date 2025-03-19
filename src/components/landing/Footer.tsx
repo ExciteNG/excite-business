@@ -30,8 +30,8 @@ const Footer = () => {
 				</div>
 			</div>
 
-			<div className="mx-auto max-w-7xl p-5">
-				<div className="relative w-24 h-16">
+			<div className="mx-auto max-w-7xl p-5 space-y-1">
+				<div className="relative w-24 h-12">
 					<Image
 						src="/excite-logo-dark.png"
 						alt="excite-logo"

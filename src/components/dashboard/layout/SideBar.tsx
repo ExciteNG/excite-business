@@ -3,7 +3,7 @@ import React from "react";
 import { usePathname, useRouter } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
-import exciteBusinessLogo from "@/../public/assets/img/exciteBusinessLogo.png";
+import exciteBusinessLogo from "@/../public/excite-logo.png";
 import {
 	Accordion,
 	AccordionContent,
