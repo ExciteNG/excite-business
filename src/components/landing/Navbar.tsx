@@ -16,7 +16,7 @@ const Navbar = () => {
 	return (
 		<div className="h-[10dvh] mx-auto max-w-7xl flex justify-between items-center">
 			<Link href="/">
-				<div className="relative w-24 h-16">
+				<div className="relative w-24 h-12">
 					<Image
 						src="/excite-logo-dark.png"
 						alt="excite-logo"
